@@ -28,11 +28,7 @@ public:
     // ---------------------------------------------------------------------------------------------------
     RentalStore();
 private:
-    struct Customer {
-        string firstName;
-        string lastName;
-        int id;
-    };
+    
 };
 
 
