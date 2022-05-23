@@ -59,15 +59,37 @@ public:
     
     //-----------------------------------Display------------------------------------------------------------
     //IThis will display all the customer data likely formatted as firstname, lastname, and id number. 
-
     //@param - N/A.
     //@return - Void
     // -----------------------------------------------------------------------------------------------------
   display()
 private:
+    
+    
   
+    //-----------------------------------setFirstName------------------------------------------------------------
+    //This is a private method that will be used to properly set the variable of first name. 
+    //This may include making sure it is the proper length (less than 25 chars) and properly formatted.
+    //@param - takes a string first name.
+    //@return - void. 
+    // -----------------------------------------------------------------------------------------------------
   setFirstName()
+     
+    //-----------------------------------setLastName------------------------------------------------------------
+    //This is a private method that will be used to properly set the variable of last name. 
+    //This may include making sure it is the proper length (less than 25 chars) and properly formatted.
+    //@param - takes a string last name.
+    //@return - void. 
+
+    // -----------------------------------------------------------------------------------------------------
   setLastName()
+      
+    //-----------------------------------SetIdName------------------------------------------------------------
+    //This is a private method that will be used to properly set the variable of first name. 
+    //This may include making sure it is the proper length (less than 25 chars) and properly formatted.
+    //@param - takes a string first name.
+    //@return - void. 
+    // -----------------------------------------------------------------------------------------------------
   setIdNumber
   //Class Fields
     
