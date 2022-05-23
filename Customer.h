@@ -15,7 +15,17 @@
 
 class Customer {
 public:
+  
+  Customer()
+  getName()
+  getlastName()
+  getIdNumber()
+  display()
 private:
+  
+  setFirstName()
+  setLastName()
+  setIdNumber
   //Class Fields
     
   string firstName;
