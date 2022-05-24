@@ -1,7 +1,7 @@
 // ------------------------------------------------ RentalStore.h -----------------------------------------------------
 // Krishna Langille, Jacob Tea, Roman Gofman CSS 343 Section B 
 // 5/20/2022
-// 5/23/2022 
+// 5/24/2022
 // --------------------------------------------------------------------------------------------------------------------
 // This is the class that will represent our movie rental store. As such, it will include the catalog of movies through
 // a Movie object, a HashTable of Customer objects to store who has an account at the rental store, and a queue of strings

@@ -1,7 +1,7 @@
 // ------------------------------------------------ Drama.h -----------------------------------------------------------
 // Krishna Langille, Jacob Tea, Roman Gofman CSS 343 Section B 
 // 5/20/2022
-// 5/23/2022 
+// 5/24/2022
 // --------------------------------------------------------------------------------------------------------------------
 // This is the class that will represent our Drama movie type. It inherits from Genre.
 // -------------------------------------------------------------------------------------------------------------------- 
@@ -37,7 +37,7 @@ class Drama: public Genre {
   //@param N/A
   //@return A formatted string containing all the movies in inventory in precedent order
   //----------------------------------------------------------------------------------------------------
-  display();
+  string display();
 private:
   //Class Fields
   

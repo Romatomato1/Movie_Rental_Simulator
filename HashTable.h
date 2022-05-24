@@ -1,7 +1,7 @@
 // ------------------------------------------------ HashTable.h -------------------------------------------------------
 // Krishna Langille, Jacob Tea, Roman Gofman CSS 343 Section B 
 // 5/20/2022
-// 5/23/2022 
+// 5/24/2022
 // --------------------------------------------------------------------------------------------------------------------
 // This class is going to be a hash table that will store customer objects. It will have a hash function that will take
 // the customer's id and does the mod by the MAXSIZE to find the hash value and where it will be on the hash table.

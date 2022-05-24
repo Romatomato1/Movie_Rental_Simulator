@@ -1,7 +1,7 @@
 // ------------------------------------------------ Genre.h -----------------------------------------------------------
 // Krishna Langille, Jacob Tea, Roman Gofman CSS 343 Section B 
 // 5/18/2022
-// 5/23/2022 
+// 5/24/2022
 // --------------------------------------------------------------------------------------------------------------------
 // This is the class that will represent our movie types and genres. It is the parent class for Comedy,Classics, 
 // and Drama
