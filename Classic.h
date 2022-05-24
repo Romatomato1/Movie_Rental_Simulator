@@ -1,5 +1,4 @@
-// ------------------------------------------------ Classic.h -------------------------------------------------------
-- 
+// ------------------------------------------------ Classic.h ---------------------------------------------------------
 // Krishna Langille, Jacob Tea, Roman Gofman CSS 343 Section B 
 // 5/23/2022
 // 5/23/2022 
@@ -12,6 +11,8 @@
 #ifndef ASSIGNMENT_4_CLASSIC_H
 #define ASSIGNMENT_4_CLASSIC_H
 
+
+#include "Genre.h"
 
 class Classic: public Genre {
 public:

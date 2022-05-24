@@ -1,5 +1,4 @@
 // ------------------------------------------------ HashTable.h -------------------------------------------------------
-- 
 // Krishna Langille, Jacob Tea, Roman Gofman CSS 343 Section B 
 // 5/20/2022
 // 5/23/2022 
@@ -14,6 +13,9 @@
 
 #ifndef ASSIGNMENT_4_HASHTABLE_H
 #define ASSIGNMENT_4_HASHTABLE_H
+
+#include <list>
+#include <array>
 #include "Customer.h"
 using namespace std;
 class HashTable {
@@ -25,7 +27,7 @@ class HashTable {
     //@param - N/A
     //@return - No direct return from a constructor. 
     // ---------------------------------------------------------------------------------------------------
-    RentalStore();
+    HashTable();
   
     //------------------------------------HashTable Second Constructor------------------------------------
     //This is the second constructor that will take in an integer value that will be set to the MAXSIZE 
@@ -34,14 +36,14 @@ class HashTable {
     //@param - Integer representing the size.
     //@return - No direct return from a constructor. 
     // ---------------------------------------------------------------------------------------------------
-    RentalStore(int size);
+    HashTable(int size);
   
     //------------------------------------HashTable Destructor--------------------------------------------
     //The destructor will delete every new linked list created for each index of the array we allocated.  
     //@param - N/A.
     //@return - void.
     //----------------------------------------------------------------------------------------------------
-    ~RentalStore();
+    ~HashTable();
     
     //------------------------------------getSize---------------------------------------------------------
     //This method will simply return the number of customers inserted into hash table so far.
@@ -78,13 +80,13 @@ private:
     //Fields
     
     //Maximum size of array that is intialized through the constructor
-    const int MAXSIZE;
+    static const int MAX_SIZE = 101;
     
     //Represents the number of customers in the hash table currently
     int size;
     
     //Array of linked lists type customer that will be the hashtable
-    array<list<Customer>> hashTable;
+    array<list<Customer>,MAX_SIZE> hashTable;
     
     //Helper Methods
     

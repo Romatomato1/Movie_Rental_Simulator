@@ -1,5 +1,4 @@
-// ------------------------------------------------ Customer.h -------------------------------------------------------
-- 
+// ------------------------------------------------ Customer.h --------------------------------------------------------
 // Krishna Langille, Jacob Tea, Roman Gofman CSS 343 Section B 
 // 5/20/2022
 // 5/23/2022 
@@ -12,9 +11,14 @@
 #ifndef ASSIGNMENT_4_CUSTOMER_H
 #define ASSIGNMENT_4_CUSTOMER_H
 
+#include <string>
+#include <array>
+
+using namespace std;
 
 class Customer {
 public:
+    static int const MAX = 101;
     //------------------------------------Customer-----------------------------------------------------
     //This is the class that will represent our customer objects. As such it will include their first and last names and their ID number.
     //A customer object just stores the information about the customer and contains basic methods. 
@@ -37,9 +41,7 @@ public:
     //@return - string associated with first name.
     // ---------------------------------------------------------------------------------------------------
 
-  getName() {
-    
-  }
+  string getName();
     
   
     //------------------------------------getLastName -----------------------------------------------------
@@ -47,7 +49,7 @@ public:
     //@param - N/A.
     //@return - string associated with first name.
     // ---------------------------------------------------------------------------------------------------
-  getlastName()
+  string getlastName();
     
     //------------------------------------getIdNumber -----------------------------------------------------
     //It will retrieve the int variable associated with the user ID
@@ -55,14 +57,14 @@ public:
     //@return - string associated ID number.
     // ---------------------------------------------------------------------------------------------------
     
-  getIdNumber()
+  string getIdNumber();
     
     //-----------------------------------Display------------------------------------------------------------
-    //IThis will display all the customer data likely formatted as firstname, lastname, and id number. 
+    //This will display all the customer data likely formatted as firstname, lastname, and id number.
     //@param - N/A.
-    //@return - Void
+    //@return - String
     // -----------------------------------------------------------------------------------------------------
-  display()
+  string display();
 private:
     
     
@@ -73,7 +75,7 @@ private:
     //@param - takes a string first name.
     //@return - void. 
     // -----------------------------------------------------------------------------------------------------
-  setFirstName()
+  void setFirstName(string firstName);
      
     //-----------------------------------setLastName------------------------------------------------------------
     //This is a private method that will be used to properly set the variable of last name. 
@@ -82,7 +84,7 @@ private:
     //@return - void. 
 
     // -----------------------------------------------------------------------------------------------------
-  setLastName()
+  void setLastName(string lastName);
       
     //-----------------------------------SetIdName------------------------------------------------------------
     //This is a private method that will be used to properly set the variable of first name. 
@@ -90,14 +92,14 @@ private:
     //@param - takes a string first name.
     //@return - void. 
     // -----------------------------------------------------------------------------------------------------
-  setIdNumber
+  void setIdNumber(int id);
   //Class Fields
     
   string firstName;
   string lastName;
   int idNumber;
-  string borrowed[];
-  string returned[];
+  array<string,MAX> borrowed;
+  array<string,MAX> returned;
 };
 
 

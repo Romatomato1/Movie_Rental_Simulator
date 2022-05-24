@@ -1,5 +1,4 @@
-// ------------------------------------------------ Movies.h -------------------------------------------------------
-- 
+// ------------------------------------------------ Movies.h ----------------------------------------------------------
 // Krishna Langille, Jacob Tea, Roman Gofman CSS 343 Section B 
 // 5/23/2022
 // 5/23/2022 
@@ -13,16 +12,24 @@
 #ifndef ASSIGNMENT_4_MOVIES_H
 #define ASSIGNMENT_4_MOVIES_H
 
+#include <string>
+#include <array>
+#include "Comedy.h"
+#include "Drama.h"
+#include "Classic.h"
+#include "Genre.h"
+
+using namespace std;
 
 class Movies {
 public:
-  
+    static int const MAX = 101;
   //------------------------------------Movie-----------------------------------------------------------
   //The movie constructor will initialize all of the genre arrays.
   //@param - N/A.
   //@return - void.
   //----------------------------------------------------------------------------------------------------
-  Movie();
+  Movies();
   
   //------------------------------------getComedyMovie--------------------------------------------------
   //Retrieves a comedy movie from array based title and year released
@@ -61,7 +68,7 @@ public:
   //@param N/A
   //@return A formatted string containing all the movies in inventory in precedent order
   //----------------------------------------------------------------------------------------------------
-  displayMovies();
+  string displayMovies();
   
   //------------------------------------isInStock-------------------------------------------------------
   //Returns a bool based on if the specific movie is in stock. 
@@ -73,13 +80,13 @@ private:
   //Class Fields
   
   //Array of comedy movies
-  Comedy comedyMovie[];
+  array<Comedy,MAX> comedyMovie;
     
   //Array of drama movies
-  Drama dramaMovie[];
+  array<Drama,MAX> dramaMovie;
     
   //Array of classic movies
-  Classic classicMovies[];
+  array<Classic,MAX> classicMovies;
 };
 
 

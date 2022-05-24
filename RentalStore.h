@@ -1,5 +1,4 @@
-// ------------------------------------------------ RentalStore.h -------------------------------------------------------
-- 
+// ------------------------------------------------ RentalStore.h -----------------------------------------------------
 // Krishna Langille, Jacob Tea, Roman Gofman CSS 343 Section B 
 // 5/20/2022
 // 5/23/2022 
@@ -14,6 +13,10 @@
 #ifndef ASSIGNMENT_4_RENTALSTORE_H
 #define ASSIGNMENT_4_RENTALSTORE_H
 #include "HashTable.h"
+#include "Movies.h"
+#include <queue>
+#include <string>
+
 using namespace std;
 class RentalStore {
 public:
@@ -54,7 +57,7 @@ private:
     HashTable customers;
     
     //Container for transactions
-    Queue transaction;
+    queue<string> transaction;
     
     //Container for movie information as well as genre specifications
     Movies catelog;

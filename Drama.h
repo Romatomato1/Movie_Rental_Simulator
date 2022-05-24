@@ -1,5 +1,4 @@
 // ------------------------------------------------ Drama.h -----------------------------------------------------------
-- 
 // Krishna Langille, Jacob Tea, Roman Gofman CSS 343 Section B 
 // 5/20/2022
 // 5/23/2022 
@@ -13,7 +12,9 @@
 #define ASSIGNMENT_4_DRAMA_H
 
 
-class Drama:public Genre {
+#include "Genre.h"
+
+class Drama: public Genre {
 //------------------------------------Drama-------------------------------------------------------------
   //Constructor for drama class
   //@param stock - int that says how many copies of a movie that the movie has

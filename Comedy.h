@@ -1,5 +1,4 @@
-// ------------------------------------------------ Comedy.h -------------------------------------------------------
-- 
+// ------------------------------------------------ Comedy.h ----------------------------------------------------------
 // Krishna Langille, Jacob Tea, Roman Gofman CSS 343 Section B 
 // 5/20/2022
 // 5/23/2022 
@@ -13,6 +12,8 @@
 #ifndef ASSIGNMENT_4_COMEDY_H
 #define ASSIGNMENT_4_COMEDY_H
 
+
+#include "Genre.h"
 
 class Comedy: public Genre {
 public:

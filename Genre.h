@@ -1,5 +1,4 @@
-// ------------------------------------------------ Genre.h -------------------------------------------------------
-- 
+// ------------------------------------------------ Genre.h -----------------------------------------------------------
 // Krishna Langille, Jacob Tea, Roman Gofman CSS 343 Section B 
 // 5/18/2022
 // 5/23/2022 
@@ -13,6 +12,10 @@
 
 #ifndef ASSIGNMENT_4_GENRE_H
 #define ASSIGNMENT_4_GENRE_H
+
+#include <string>
+
+using namespace std;
 
 class Genre {
 public:
