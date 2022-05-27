@@ -41,7 +41,7 @@ public:
     //@return - string associated with first name.
     // ---------------------------------------------------------------------------------------------------
 
-  string getName();
+  string getName()const;
     
   
     //------------------------------------getLastName -----------------------------------------------------
@@ -49,7 +49,7 @@ public:
     //@param - N/A.
     //@return - string associated with first name.
     // ---------------------------------------------------------------------------------------------------
-  string getlastName();
+  string getlastName()const;
     
     //------------------------------------getIdNumber -----------------------------------------------------
     //It will retrieve the int variable associated with the user ID
@@ -57,7 +57,7 @@ public:
     //@return - string associated ID number.
     // ---------------------------------------------------------------------------------------------------
     
-  string getIdNumber();
+  int getIdNumber()const;
     
     //-----------------------------------Display------------------------------------------------------------
     //This will display all the customer data likely formatted as firstname, lastname, and id number.
@@ -65,6 +65,8 @@ public:
     //@return - String
     // -----------------------------------------------------------------------------------------------------
   string display();
+
+  bool operator== (const Customer &user)const;
 private:
     
     

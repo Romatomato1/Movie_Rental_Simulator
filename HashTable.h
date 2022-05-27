@@ -29,28 +29,12 @@ class HashTable {
     // ---------------------------------------------------------------------------------------------------
     HashTable();
   
-    //------------------------------------HashTable Second Constructor------------------------------------
-    //This is the second constructor that will take in an integer value that will be set to the MAXSIZE 
-    //variable. Same as the default, it will initializae an array of linked lists with a size of whatever
-    //the MAXSIZE is. The size will be intialized to zero and each index in the array will be set to null.
-    //@param - Integer representing the size.
-    //@return - No direct return from a constructor. 
-    // ---------------------------------------------------------------------------------------------------
-    HashTable(int size);
-  
     //------------------------------------HashTable Destructor--------------------------------------------
     //The destructor will delete every new linked list created for each index of the array we allocated.  
     //@param - N/A.
     //@return - void.
     //----------------------------------------------------------------------------------------------------
     ~HashTable();
-    
-    //------------------------------------getSize---------------------------------------------------------
-    //This method will simply return the number of customers inserted into hash table so far.
-    //@param - N/A.
-    //@return - Return the integer value associated with the size variable.
-    //----------------------------------------------------------------------------------------------------
-    int getSize() const;
   
     //------------------------------------addValue---------------------------------------------------------
     //This method will add the customer to value into the parameter. It will achieve this by calling the
@@ -82,9 +66,6 @@ private:
     //Maximum size of array that is intialized through the constructor
     static const int MAX_SIZE = 101;
     
-    //Represents the number of customers in the hash table currently
-    int size;
-    
     //Array of linked lists type customer that will be the hashtable
     array<list<Customer>,MAX_SIZE> hashTable;
     
@@ -96,7 +77,14 @@ private:
     //@param - Takes in an integer representing the id.
     //@return - Returns the hash value which will be used as the index in the hash table array.
     //------------------------------------------------------------------------------------------------
-    int Hashify(int id) const;  
+    int hashify(int id) const;
+
+    //------------------------------------contains-----------------------------------------------------
+    //This helper method will be called to prevent duplicates in the Hash Table.
+    //@param - user - Customer object to be checked
+    //@return - boolean if in the Hash Table
+    //------------------------------------------------------------------------------------------------
+    bool contains(int id)const;
 };
 
 
