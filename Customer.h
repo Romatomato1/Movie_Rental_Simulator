@@ -31,7 +31,9 @@ public:
     // ---------------------------------------------------------------------------------------------------
   
   //Customer constructor will call the associated mutators to set the parameters to their respective variables. 
-  Customer(string fName, string lName, int ID);
+  Customer(string fName, string lName, int ID) {
+    
+  }
     
     //------------------------------------getName -----------------------------------------------------
     //It will retrieve the string variable associated with the first name variable
@@ -39,7 +41,7 @@ public:
     //@return - string associated with first name.
     // ---------------------------------------------------------------------------------------------------
 
-  string getFirstName()const;
+  string getName()const;
     
   
     //------------------------------------getLastName -----------------------------------------------------
@@ -47,7 +49,7 @@ public:
     //@param - N/A.
     //@return - string associated with first name.
     // ---------------------------------------------------------------------------------------------------
-  string getLastName()const;
+  string getlastName()const;
     
     //------------------------------------getIdNumber -----------------------------------------------------
     //It will retrieve the int variable associated with the user ID

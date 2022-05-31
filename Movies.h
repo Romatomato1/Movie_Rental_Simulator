@@ -76,11 +76,13 @@ public:
   //@return Returns true if the movie is in stock, returns false if out of stock 
   //----------------------------------------------------------------------------------------------------
   bool isInStock(Genre movie);
+
+    //Constant size
+   int const MAX = 101;
 private:
   //Class Fields
   
-  //Constant size
-  static int const MAX = 101;
+
   //Array of comedy movies
   array<Comedy,MAX> comedyMovie;
     

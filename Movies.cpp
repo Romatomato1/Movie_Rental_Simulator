@@ -5,14 +5,21 @@
 #include <sstream>
 #include "Movies.h"
 #include <iostream>
+#include <vector>
 
-  Movies() {
-    comedyArray = array<<Comedy>,MAX>();
-    classicArray = array<<Classic>,MAX>();
-    dramaArray = array<<Drama>,MAX>();
+using namespace std;
 
-  }
+Movies() {
 
+  //Array of comedy movies
+  array<Comedy,MAX> comedyArray;
+    
+  //Array of drama movies
+  array<Drama,MAX> dramaArray;
+    
+  //Array of classic movies
+  array<Classic,MAX> classicArray;
+}
 
    Comedy getComedyMovie(string title, int yearReleased) {
 
@@ -22,7 +29,7 @@
            }
        }
 
-       return comedy( 0,"" ,"", 0);
+       return Comedy( 0,"" ,"", 0);
    }
 
    
@@ -34,7 +41,7 @@
            }
        }
 
-       return classic( 0,"" ,"", "");
+       return Classic( 0,"" ,"", "");
    }
 
     Drama getDramaMovie(string title, string director){
@@ -45,7 +52,7 @@
            }
        }
 
-       return drama( 0,"" ,"", "");
+       return Drama( 0,"" ,"", "");
     }
 
 
@@ -86,7 +93,7 @@
             while(stream.good()){
                 string substring;
                 getLine(stream, substring, ',');
-                result.push_back(substring)
+                result.push_back(substring);
                     }
                     
                     
@@ -123,38 +130,83 @@
 
         }
 
+    }
+
 
     string displayMovies(){
-        
+        /*
         for (int i=0;i<MAX;i++){
-            cout << comedyArray[i] << " , ";
+            cout << comedyArray[i].title << " , ";
         }
 
         for (int k=0;i<MAX;i++){
-            cout << dramaArray[i] << " , ";
+            cout << dramaArray[i].title << " , ";
         }
 
 
         for (int j=0;i<MAX;i++){
-            cout << classicArray[i] << " , ";
+            cout << classicArray[i].title << " , ";
         }
+        */
 
-
-
-
-          }
+       return " "; 
+    }
 
 
     bool isInStock(Genre movie){
+        if (movie.getTitle()==){
 
-        
-        
+            for (int i=0;i<MAX;i++){
+
+               if (comedyArray[i].gettitle()==movie.getTitle() && comedyArray[i].getDirector()==movie.getDirector() 
+               //&& comedyArray[i].getReleaseYear()==movie.getReleaseYear()
+
+                ){
+
+                   if (comedyArray[i].getStock()>0){
+                       return true; 
+                   }
+
+                   
+               }
+
+            }
+
+            return false; 
+
+        }
+
+        else if (movie.getTitle()==drama.getTitle()) {
+            
+            for (int i=0;i<MAX;i++){
+               if (dramaArray[i].gettitle()==movie.getTitle() && dramaArray[i].getDirector()==movie.getDirector() 
+               //&& dramaArray[i].getReleaseYear()==movie.getReleaseYear()
+               ){
+                   if (dramaArray[i])
+                   return true;
+               }
+            }
+
+            return false; 
+        }
+
+        else {
+
+            for (int i=0;i<MAX;i++){
+               if (classicArray[i].getTitle()==movie.getTitle() && classicArray[i].getDirector()==movie.getDirector()
+               //&& classicArray[i].getReleaseYear()==movie.getReleaseYear()
+               ){
+                   if (classicArray[i].getStock()>0){
+                       return true;
+                   }
+               }
+            }
+
+            return false;
+        }
+
     }
-
-
-
-        
-    }
+  
 
 
 
