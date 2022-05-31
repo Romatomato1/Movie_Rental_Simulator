@@ -7,9 +7,8 @@
 #include <iostream>
 #include <vector>
 
-using namespace std;
 
-Movies() {
+Movies::Movies() {
 
   //Array of comedy movies
   array<Comedy,MAX> comedyArray;
@@ -21,7 +20,7 @@ Movies() {
   array<Classic,MAX> classicArray;
 }
 
-   Comedy getComedyMovie(string title, int yearReleased) {
+Movies::Comedy getComedyMovie(string title, int yearReleased) {
 
        for (int i=0;i<MAX;i++){
            if (comedyArray[i].title==title && comedyArray[i].yearReleased==yearReleased){
@@ -33,7 +32,7 @@ Movies() {
    }
 
    
-  Classic getClassicMovie(string majorActorReleaseDate){
+Movies::Classic getClassicMovie(string majorActorReleaseDate){
 
        for (int i=0;i<MAX;i++){
            if (classicArray[i].majorActorReleaseDate==majorActorReleaseDate){
@@ -44,7 +43,7 @@ Movies() {
        return Classic( 0,"" ,"", "");
    }
 
-    Drama getDramaMovie(string title, string director){
+Movies::Drama getDramaMovie(string title, string director){
 
         for (int i=0;i<MAX;i++){
            if (dramaArray[i].title==title && dramaArray[i].director==director){
@@ -56,7 +55,7 @@ Movies() {
     }
 
 
-    bool addMovie(string data) {
+ Movies::bool addMovie(string data) {
 
         stringstream stream(data);
         string movietype;
@@ -69,15 +68,16 @@ Movies() {
 
             while(stream.good()){
                 string substring;
-                getLine(stream, substring, ',');
-                result.push_back(substring)
+                getline(stream, substring, ',');
+                result.push_back(substring);
             }
             
             
             comedyArray.add(Comedy(stoi(result.at(0)),result.at(1),result.at(2),stoi(result.at(3))));
-            
+            return true;
             
         }
+
 
         else if (movietype=="C"){
             //  Classic(int stock,string director,string title, string majorActorReleaseData);
@@ -98,6 +98,7 @@ Movies() {
                     
                     
             classicArray.add(Classic(stoi(result.at(0)),result.at(1),result.at(2),result.at(3)));
+            return true;
                     
 
         }
@@ -120,6 +121,7 @@ Movies() {
                     
                     
             dramaArray.add(Drama(stoi(result.at(0)),result.at(1),result.at(2),stoi(result.at(3))));
+            return true;
 
         }
 
@@ -133,7 +135,7 @@ Movies() {
     }
 
 
-    string displayMovies(){
+    Movies::string displayMovies(){
         /*
         for (int i=0;i<MAX;i++){
             cout << comedyArray[i].title << " , ";
@@ -153,7 +155,7 @@ Movies() {
     }
 
 
-    bool isInStock(Genre movie){
+    Movies::bool isInStock(Genre movie){
         if (movie.getTitle()==){
 
             for (int i=0;i<MAX;i++){

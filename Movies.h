@@ -78,7 +78,7 @@ public:
   bool isInStock(Genre movie);
 
     //Constant size
-   int const MAX = 101;
+   static int const MAX = 101;
 private:
   //Class Fields
   
