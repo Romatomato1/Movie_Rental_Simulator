@@ -23,8 +23,7 @@ using namespace std;
 
 class Movies {
 public:
-    //Constant size
-    static int const MAX = 101;
+    
   //------------------------------------Movie-----------------------------------------------------------
   //The movie constructor will initialize all of the genre arrays.
   //@param - N/A.
@@ -54,7 +53,7 @@ public:
   //@param majorActorReleaseDate: The major actor in the movie and the release data in the same string 
   //@return - Returns a drama movie object
   //----------------------------------------------------------------------------------------------------
-  Classic getDramayMovie(string majorActorReleaseDate);
+  Classic getClassicMovie(string majorActorReleaseDate);
   
   //------------------------------------addMovie--------------------------------------------------------
   //Adds a movie to the appropriate array based on what type of movie it is
@@ -80,6 +79,8 @@ public:
 private:
   //Class Fields
   
+  //Constant size
+  static int const MAX = 101;
   //Array of comedy movies
   array<Comedy,MAX> comedyMovie;
     
@@ -88,6 +89,8 @@ private:
     
   //Array of classic movies
   array<Classic,MAX> classicMovies;
+
+  
 };
 
 
