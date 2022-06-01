@@ -13,7 +13,7 @@
 #define ASSIGNMENT_4_MOVIES_H
 
 #include <string>
-#include <array>
+#include <vector>
 #include "Comedy.h"
 #include "Drama.h"
 #include "Classic.h"
@@ -84,13 +84,13 @@ private:
   
 
   //Array of comedy movies
-  array<Comedy,MAX> comedyMovie;
-    
+  vector<Comedy> comedyMovie;
+
   //Array of drama movies
-  array<Drama,MAX> dramaMovie;
-    
+  vector<Drama> dramaMovie;
+
   //Array of classic movies
-  array<Classic,MAX> classicMovies;
+  vector<Classic> classicMovie;
 
   
 };
