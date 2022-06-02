@@ -13,7 +13,7 @@
 #define ASSIGNMENT_4_MOVIES_H
 
 #include <string>
-#include <vector>
+#include <array>
 #include "Comedy.h"
 #include "Drama.h"
 #include "Classic.h"
@@ -81,16 +81,24 @@ public:
    static int const MAX = 101;
 private:
   //Class Fields
-  
+  /*
 
   //Array of comedy movies
-  vector<Comedy> comedyMovie;
-
+  array<Comedy,MAX> comedyMovie;
+    
   //Array of drama movies
-  vector<Drama> dramaMovie;
-
+  array<Drama,MAX> dramaMovie;
+    
   //Array of classic movies
-  vector<Classic> classicMovie;
+  array<Classic,MAX> classicMovies;
+  */
+
+  vector<Comedy> comedyVector;
+  vector<Drama> dramaVector;
+  vector<Classic> classicVector;
+
+
+
 
   
 };
