@@ -27,7 +27,7 @@ public:
   //@param release year- the release year of the film 
   //@return Has no return
   //----------------------------------------------------------------------------------------------------
-  Genre(int stock, string director, string releaseYear);
+  Genre(int stock, string director, string title);
   
   //------------------------------------getStock---------------------------------------------------------
   //Retrieves the int that represents the stock of a movie.
@@ -35,6 +35,14 @@ public:
   //@return returns an int representing the stock
   //----------------------------------------------------------------------------------------------------
   int getStock();
+
+  
+  //------------------------------------getMovieType---------------------------------------------------------
+  //Retrieves the char that represents the type of a movie.
+  //@param Has no parameters
+  //@return returns an int representing the stock
+  //----------------------------------------------------------------------------------------------------
+  char getMovieType();
   
   //------------------------------------getDirector---------------------------------------------------------
   //This getterd retrieves the string that represents the director of a movie.
@@ -60,6 +68,8 @@ private:
     
   //The title of the movie
   string title;
+
+  char movieGenre;
     
   //------------------------------------setStock---------------------------------------------------------
   //Sets the stock of a movie to the passed in int

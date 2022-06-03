@@ -12,7 +12,7 @@
 #define ASSIGNMENT_4_CUSTOMER_H
 
 #include <string>
-#include <vector>
+#include <array>
 
 using namespace std;
 
@@ -31,7 +31,9 @@ public:
     // ---------------------------------------------------------------------------------------------------
   
   //Customer constructor will call the associated mutators to set the parameters to their respective variables. 
-  Customer(string firstName, string lastName, int idNumber);
+  Customer(string fName, string lName, int ID) {
+    
+  }
     
     //------------------------------------getName -----------------------------------------------------
     //It will retrieve the string variable associated with the first name variable
@@ -39,7 +41,7 @@ public:
     //@return - string associated with first name.
     // ---------------------------------------------------------------------------------------------------
 
-  string getFirstName()const;
+  string getName()const;
     
   
     //------------------------------------getLastName -----------------------------------------------------
@@ -47,7 +49,7 @@ public:
     //@param - N/A.
     //@return - string associated with first name.
     // ---------------------------------------------------------------------------------------------------
-  string getLastName()const;
+  string getlastName()const;
     
     //------------------------------------getIdNumber -----------------------------------------------------
     //It will retrieve the int variable associated with the user ID
@@ -56,14 +58,7 @@ public:
     // ---------------------------------------------------------------------------------------------------
     
   int getIdNumber()const;
-
-    //-----------------------------------addTransaction-----------------------------------------------------
-    //This will add a transaction to the list for a customer object
-    //@param - The string representing the transaction
-    //@return - N/A
-    // -----------------------------------------------------------------------------------------------------
-  void addTransaction(string transaction);
-
+    
     //-----------------------------------Display------------------------------------------------------------
     //This will display all the customer data likely formatted as firstname, lastname, and id number.
     //@param - N/A.
@@ -73,6 +68,9 @@ public:
 
   bool operator== (const Customer &user)const;
 private:
+    
+    
+  
     //-----------------------------------setFirstName------------------------------------------------------------
     //This is a private method that will be used to properly set the variable of first name. 
     //This may include making sure it is the proper length (less than 25 chars) and properly formatted.
@@ -96,13 +94,14 @@ private:
     //@param - takes a string first name.
     //@return - void. 
     // -----------------------------------------------------------------------------------------------------
-  void setIdNumber(int idNumber);
+  void setIdNumber(int id);
   //Class Fields
     
   string firstName;
   string lastName;
   int idNumber;
-  vector<string> transactions;
+  array<string,MAX> borrowed;
+  array<string,MAX> returned;
 };
 
 

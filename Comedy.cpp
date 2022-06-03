@@ -19,9 +19,8 @@ int Comedy::getYearReleased(){
 
 string Comedy::display(){
        
-      
 
-        string retTitle = getTitle();
+       string retTitle = getTitle();
        string retStock = to_string(getStock());
        string retDirector= getDirector();
        string retYear = to_string(getYearReleased());
