@@ -13,7 +13,7 @@
 #define ASSIGNMENT_4_MOVIES_H
 
 #include <string>
-#include <array>
+#include <vector>
 #include "Comedy.h"
 #include "Drama.h"
 #include "Classic.h"
@@ -80,18 +80,6 @@ public:
     //Constant size
    static int const MAX = 101;
 private:
-  //Class Fields
-  /*
-
-  //Array of comedy movies
-  array<Comedy,MAX> comedyMovie;
-    
-  //Array of drama movies
-  array<Drama,MAX> dramaMovie;
-    
-  //Array of classic movies
-  array<Classic,MAX> classicMovies;
-  */
 
   vector<Comedy> comedyVector;
   vector<Drama> dramaVector;

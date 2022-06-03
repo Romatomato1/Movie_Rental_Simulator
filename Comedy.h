@@ -14,6 +14,7 @@
 
 
 #include "Genre.h"
+using namespace std;
 
 class Comedy: public Genre {
 public:
@@ -39,7 +40,7 @@ public:
   //@param N/A
   //@return A formatted string containing all the movies in inventory in precedent order
   //----------------------------------------------------------------------------------------------------
-  display();
+  string display();
 private:
   //Class Fields
   

@@ -7,6 +7,7 @@
 #include <iostream>
 #include <array>
 #include <vector>
+using namespace std; 
 
 
 Movies::Movies() {
@@ -14,10 +15,10 @@ Movies::Movies() {
  
 }
 
-Movies::Comedy getComedyMovie(string title, int yearReleased) {
+Comedy Movies::getComedyMovie(string title, int yearReleased) {
 
        for (int i=0;i<MAX;i++){
-           if (comedyVector[i].title==title && comedyVecctor[i].yearReleased==yearReleased){
+           if (comedyVector[i].getTitle()==title && comedyVector[i].getYearReleased()==yearReleased){
                return comedyVector[i];
            }
        }
@@ -26,7 +27,7 @@ Movies::Comedy getComedyMovie(string title, int yearReleased) {
    }
 
    
-Movies::Classic getClassicMovie(string majorActorReleaseDate){
+Classic Movies::getClassicMovie(string majorActorReleaseDate){
 
        for (int i=0;i<MAX;i++){
            if (classicVector[i].majorActorReleaseDate==majorActorReleaseDate){
@@ -37,10 +38,10 @@ Movies::Classic getClassicMovie(string majorActorReleaseDate){
        return Classic( 0,"" ,"", "");
    }
 
-Movies::Drama getDramaMovie(string title, string director){
+Drama Movies::getDramaMovie(string title, string director){
 
         for (int i=0;i<MAX;i++){
-           if (dramaVector[i].title==title && dramaVector[i].director==director){
+           if (dramaVector[i].getTitle()==title && dramaVector[i].getDirector==director){
                return dramaVector[i];
            }
        }
@@ -49,7 +50,7 @@ Movies::Drama getDramaMovie(string title, string director){
     }
 
 
- Movies::bool addMovie(string data) {
+bool Movies::addMovie(string data) {
 
         stringstream stream(data);
         string movietype;
@@ -67,7 +68,7 @@ Movies::Drama getDramaMovie(string title, string director){
             }
             
             
-            comedyVector.pushback(Comedy(stoi(result.at(0)),result.at(1),result.at(2),stoi(result.at(3))));
+            comedyVector.push_back(Comedy(stoi(result.at(0)),result.at(1),result.at(2),stoi(result.at(3))));
             return true;
             
         }
@@ -86,12 +87,12 @@ Movies::Drama getDramaMovie(string title, string director){
 
             while(stream.good()){
                 string substring;
-                getLine(stream, substring, ',');
+                getline(stream, substring, ',');
                 result.push_back(substring);
                     }
                     
                     
-            classicVector.pushpack(Classic(stoi(result.at(0)),result.at(1),result.at(2),result.at(3)));
+            classicVector.push_back(Classic(stoi(result.at(0)),result.at(1),result.at(2),result.at(3)));
             return true;
                     
 
@@ -109,12 +110,12 @@ Movies::Drama getDramaMovie(string title, string director){
 
             while(stream.good()){
                 string substring;
-                getLine(stream, substring, ',');
-                result.push_back(substring)
+                getline(stream, substring, ',');
+                result.push_back(substring);
                     }
                     
                     
-            dramaVector.pushback(Drama(stoi(result.at(0)),result.at(1),result.at(2),stoi(result.at(3))));
+            dramaVector.push_back(Drama(stoi(result.at(0)),result.at(1),result.at(2),stoi(result.at(3))));
             return true;
 
         }
@@ -129,27 +130,33 @@ Movies::Drama getDramaMovie(string title, string director){
     }
 
 
-    Movies::string displayMovies(){
-        /*
-        for (int i=0;i<MAX;i++){
-            cout << comedyArray[i].title << " , ";
+  string Movies::displayMovies(){
+        string classicString;
+        string dramaString;
+        string comedyString;
+
+        for (int i=0;i<comedyVector.size();i++){
+            comedyString+comedyMovies[i];
+            
         }
 
-        for (int k=0;i<MAX;i++){
-            cout << dramaArray[i].title << " , ";
+         for (int i=0;i<dramaVector.size();i++){
+            dramaString+dramaVector[i];
+            
         }
 
-
-        for (int j=0;i<MAX;i++){
-            cout << classicArray[i].title << " , ";
+        for (int i=0;i<classicString.size();i++){
+            classicString+classicVector[i];
+        
         }
-        */
+       
 
-       return " "; 
+       return comedyString + "/n" + dramaString + "\n" + classicString ; 
     }
 
 
-    Movies::bool isInStock(Genre movie){
+   bool Movies::isInStock(Genre movie){
+        
         if (movie.getTitle()==){
 
             for (int i=0;i<MAX;i++){
