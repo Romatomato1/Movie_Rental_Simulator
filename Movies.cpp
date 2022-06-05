@@ -42,12 +42,12 @@ Classic Movies::getClassicMovie(string majorActorReleaseDate){
 Drama Movies::getDramaMovie(string title, string director){
 
         for (int i=0;i<MAX;i++){
-           if (dramaVector[i].getTitle()==title && dramaVector[i].getDirector==director){
+           if (dramaVector[i].getTitle()==title && dramaVector[i].getDirector()==director){
                return dramaVector[i];
            }
        }
 
-       return Drama( 0,"" ,"", "");
+       return Drama(0,"" ,"", 0);
     }
 
 
@@ -137,17 +137,17 @@ bool Movies::addMovie(string data) {
         string comedyString;
 
         for (int i=0;i<comedyVector.size();i++){
-            comedyString+comedyVector[i];
+            comedyString+comedyVector[i].getTitle()+comedyVector[i].getDirector()+to_string(comedyVector[i].getYearReleased());
             
         }
 
          for (int i=0;i<dramaVector.size();i++){
-            dramaString+dramaVector[i];
+            dramaString+dramaVector[i].getTitle()+dramaVector[i].getDirector()+to_string(comedyVector[i].getYearReleased());
             
         }
 
         for (int i=0;i<classicString.size();i++){
-            classicString+classicVector[i];
+            classicString+classicVector[i].getTitle()+classicVector[i].getDirector()+classicVector[i].getActorFirstName()+classicVector[i].getActorLastName()+to_string(classicVector[i].getReleaseDateYear());
         
         }
        
@@ -162,7 +162,7 @@ bool Movies::addMovie(string data) {
 
             for (int i=0;i<MAX;i++){
 
-               if (comedyVector[i].gettitle()==movie.getTitle() && comedyVector[i].getDirector()==movie.getDirector() 
+               if (comedyVector[i].getTitle()==movie.getTitle() && comedyVector[i].getDirector()==movie.getDirector() 
                //&& comedyArray[i].getReleaseYear()==movie.getReleaseYear()
 
                 ){
@@ -183,15 +183,16 @@ bool Movies::addMovie(string data) {
         else if (movie.getMovieType()=='D') {
             
             for (int i=0;i<MAX;i++){
-               if (dramaVector[i].gettitle()==movie.getTitle() && dramaVector[i].getDirector()==movie.getDirector() 
+               if (dramaVector[i].getTitle()==movie.getTitle() && dramaVector[i].getDirector()==movie.getDirector()
                //&& dramaArray[i].getReleaseYear()==movie.getReleaseYear()
                ){
-                   if (dramaVector[i])
+                   if (dramaVector[i].getStock()>0){
                    return true;
-               }
+                }
             }
 
             return false; 
+            }
         }
 
         else {
@@ -208,8 +209,10 @@ bool Movies::addMovie(string data) {
 
             return false;
         }
+        return false;
 
     }
+   
   
 
 
