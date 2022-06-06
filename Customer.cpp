@@ -33,16 +33,21 @@ bool Customer::operator==(const Customer &user) const {
         void Customer::setIdNumber(int id) {
             idNumber = id;
         }
-void Customer::addTransaction(string transaction) {
-    transactions.push_back(transaction);
+void Customer::addTransaction(char action, string title) {
+    string formattedTransaction = "";
+    if(action == 'B'){
+        formattedTransaction = "Borrowed " + title + ".";
+    }else{
+        formattedTransaction = "Returned " + title + ".";
+    }
+    transactions.push_back(formattedTransaction);
 }
 
 string Customer::display() {
     string result = "";
-    result += firstName + " " + lastName+" Number: " + to_string(idNumber) + " Transactions:\n";
-//    for(string transaction:transactions) {
-//
-//    }
+    for(auto transaction:transactions) {
+        result += transaction + "\n";
+    }
     return result;
 }
 

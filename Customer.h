@@ -60,7 +60,7 @@ public:
     //@param - The string representing the transaction
     //@return - N/A
     // -----------------------------------------------------------------------------------------------------
-    void addTransaction(string transaction);
+    void addTransaction(char action, string title);
 
     //-----------------------------------Display------------------------------------------------------------
     //This will display all the customer data likely formatted as firstname, lastname, and id number.
