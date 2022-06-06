@@ -59,6 +59,8 @@ class HashTable {
     //@return - Return true if the removal succeeds.
     //--------------------------------------------------------------------------------------------------------
     bool removeValue(int id);
+
+    string display() const;
  
 private:
     //Fields

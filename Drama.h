@@ -13,8 +13,10 @@
 
 
 #include "Genre.h"
+using namespace std;
 
 class Drama: public Genre {
+public:
 //------------------------------------Drama-------------------------------------------------------------
   //Constructor for drama class
   //@param stock - int that says how many copies of a movie that the movie has

@@ -60,9 +60,6 @@ bool HashTable::removeValue(int id) {
 }
 
 Customer HashTable::getValue(int id) const {
-    if (!contains(id)){
-        return Customer(0,"","");
-    }
     for(int i = 0; i < MAX_SIZE; i++){
         list<Customer> linkedList = hashTable[i];
         for(const auto& currentCustomer : linkedList)
@@ -72,5 +69,16 @@ Customer HashTable::getValue(int id) const {
             }
         }
     }
-
+    return Customer("","",0);
 }
+
+string HashTable::display() const{
+    string result = "";
+    for(list<Customer> list: hashTable){
+        for(Customer customer: list){
+            result = customer.display();
+        }
+    }
+    return result;
+}
+

@@ -9,7 +9,6 @@ using namespace std;
 
 Comedy::Comedy(int stock, string director, string title, int releaseYear) :Genre(stock,director,title) {
     releaseYear=releaseYear;
-    
 }
 
 int Comedy::getYearReleased(){

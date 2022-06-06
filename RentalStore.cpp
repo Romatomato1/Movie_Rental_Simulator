@@ -41,7 +41,7 @@ void RentalStore::processTransactions() {
 }
 
 void RentalStore::display() const {
-    customers.
+    customers.display();
 }
 
 void RentalStore::readCustomer(ifstream &customerFile) {
@@ -137,7 +137,7 @@ void RentalStore::borrowHelper(string borrowString) {
                 cout << "The customer with id " << id << " is trying to borrow a media type we don't carry or are out of stock of" << endl;
             }
             else {
-                string movieString = "B,F," + movie.getTitle() + "," + movie.getDirector() + "," + to_string(movie.getYearReleased) + "," + to_string(movie.getStock());
+                string movieString = "B,F," + movie.getTitle() + "," + movie.getDirector() + "," + to_string(movie.getYearReleased()) + "," + to_string(movie.getStock());
                 currentCustomer.addTransaction(movieString);
             }
             break;
@@ -198,7 +198,7 @@ void RentalStore::returnHelper(string returnString) {
                 cout << "The customer with id " << id << " is trying to borrow a media type we don't carry or are out of stock of" << endl;
             }
             else {
-                string movieString = "R,D," + movie.getTitle() + "," + movie.getDirector() + "," + to_string(movie.getYearReleased) + "," + to_string(movie.getStock());
+                string movieString = "R,D," + movie.getTitle() + "," + movie.getDirector() + "," + to_string(movie.getYearReleased()) + "," + to_string(movie.getStock());
                 currentCustomer.addTransaction(movieString);
             }
             break;
