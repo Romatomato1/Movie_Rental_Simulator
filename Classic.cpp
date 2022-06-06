@@ -26,10 +26,10 @@
 
       }
 
-      result[0]=actorFirstName;
-      result[1]=actorLastName;
-      result[2]=releaseDateMonth;
-      result[3]=releaseDateYear;      
+      actorFirstName = result[0];
+      actorLastName = result[1];
+      releaseDateMonth = stoi(result[2]);
+      releaseDateYear = stoi(result[3]);
 
   }
   

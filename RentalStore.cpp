@@ -51,9 +51,9 @@ void RentalStore::readCustomer(ifstream &customerFile) {
         if(!customerLine.empty()){
             int id = stoi(customerLine.substr(0, 4));
             customerLine = customerLine.substr(customerLine.find(' ') + 1, customerLine.size());
-            string fName = customerLine.substr(0, customerLine.find(' '));
-            customerLine = customerLine.substr(customerLine.find(' ') + 1);
             string lName = customerLine.substr(0, customerLine.find(' '));
+            customerLine = customerLine.substr(customerLine.find(' ') + 1);
+            string fName = customerLine.substr(0, customerLine.find(' '));
             customers.addValue(Customer(fName, lName, id));
         }
         getline(customerFile, customerLine);
@@ -83,7 +83,7 @@ void RentalStore::readTransaction(ifstream &transactionFile) {
 }
 
 void RentalStore::inventoryHelper(string inventoryString) {
-    catelog.displayMovies();
+    cout << catelog.displayMovies();
 }
 
 void RentalStore::historyHelper(string historyString) {
@@ -91,7 +91,7 @@ void RentalStore::historyHelper(string historyString) {
     Customer currentCustomer = customers.getValue(stoi(id));
     if(currentCustomer.getIdNumber() != 0){
         cout << "Rental history for " << currentCustomer.getFirstName() << " " << currentCustomer.getLastName() << ":" << endl;
-        customers.getValue(stoi(id)).display();
+        cout << customers.getValue(stoi(id)).display();
     }
     else{
         cout << "Cannot get the history of the customer with id " << id << " because they do not exist in our system" << endl;
@@ -117,13 +117,13 @@ void RentalStore::borrowHelper(string borrowString) {
         case 'F': {
             string title = borrowString.substr(0, borrowString.find(','));
             borrowString = borrowString.substr(borrowString.find(',') + 1);
-            string year = borrowString;
+            string year = borrowString.substr(1);
             Comedy movie = catelog.getComedyMovie(title, stoi(year));
             if (movie.getStock() <= 0) {
                 cout << "The customer with id " << id << " is trying to borrow a media type we don't carry or are out of stock of" << endl;
             }
             else {
-                string movieString = "B,F," + movie.getTitle() + "," + movie.getDirector() + "," + to_string(movie.getYearReleased()) + "," + to_string(movie.getStock());
+                string movieString = "B " + movie.getTitle();
                 currentCustomer.addTransaction(movieString);
             }
             break;
@@ -137,7 +137,7 @@ void RentalStore::borrowHelper(string borrowString) {
                 cout << "The customer with id " << id << " is trying to borrow a media type we don't carry or are out of stock of" << endl;
             }
             else {
-                string movieString = "B,F," + movie.getTitle() + "," + movie.getDirector() + "," + to_string(movie.getYearReleased()) + "," + to_string(movie.getStock());
+                string movieString = "B " + movie.getTitle();
                 currentCustomer.addTransaction(movieString);
             }
             break;
@@ -147,7 +147,7 @@ void RentalStore::borrowHelper(string borrowString) {
             if (movie.getStock() <= 0) {
                 cout << "The customer with id " << id << " is trying to borrow a media type we don't carry or are out of stock of" << endl;
             } else {
-                string movieString = "B,F," + movie.getTitle() + "," + movie.getDirector() + "," + to_string(movie.getReleaseDateYear()) + "," + to_string(movie.getStock());
+                string movieString = "B " + movie.getTitle();
                 currentCustomer.addTransaction(movieString);
             }
             break;
@@ -184,7 +184,7 @@ void RentalStore::returnHelper(string returnString) {
                 cout << "The customer with id " << id << " is trying to borrow a media type we don't carry or are out of stock of" << endl;
             }
             else {
-                string movieString = "R,F," + movie.getTitle() + "," + movie.getDirector() + "," + to_string(movie.getYearReleased()) + "," + to_string(movie.getStock());
+                string movieString = "R " + movie.getTitle();
                 currentCustomer.addTransaction(movieString);
             }
             break;
@@ -198,7 +198,7 @@ void RentalStore::returnHelper(string returnString) {
                 cout << "The customer with id " << id << " is trying to borrow a media type we don't carry or are out of stock of" << endl;
             }
             else {
-                string movieString = "R,D," + movie.getTitle() + "," + movie.getDirector() + "," + to_string(movie.getYearReleased()) + "," + to_string(movie.getStock());
+                string movieString = "R " + movie.getTitle();
                 currentCustomer.addTransaction(movieString);
             }
             break;
@@ -208,7 +208,7 @@ void RentalStore::returnHelper(string returnString) {
             if (movie.getTitle().empty()) {
                 cout << "The customer with id " << id << " is trying to borrow a media type we don't carry or are out of stock of" << endl;
             } else {
-                string movieString = "R,C," + movie.getTitle() + "," + movie.getDirector() + "," + to_string(movie.getReleaseDateYear()) + "," + to_string(movie.getStock());
+                string movieString = "R " + movie.getTitle();
                 currentCustomer.addTransaction(movieString);
             }
             break;

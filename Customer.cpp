@@ -39,10 +39,11 @@ void Customer::addTransaction(string transaction) {
 
 string Customer::display() {
     string result = "";
-    result += firstName + " " + lastName+" Number: " + to_string(idNumber) + "Transactions:\n";
-    for(string transaction:transactions) {
-
-    }
+    result += firstName + " " + lastName+" Number: " + to_string(idNumber) + " Transactions:\n";
+//    for(string transaction:transactions) {
+//
+//    }
+    return result;
 }
 
 

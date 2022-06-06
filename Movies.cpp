@@ -17,7 +17,7 @@ Movies::Movies() {
 
 Comedy Movies::getComedyMovie(string title, int yearReleased) {
 
-       for (int i=0;i<MAX;i++){
+       for (int i=0;i<comedyVector.size();i++){
            if (comedyVector[i].getTitle()==title && comedyVector[i].getYearReleased()==yearReleased){
                return comedyVector[i];
            }
@@ -29,7 +29,7 @@ Comedy Movies::getComedyMovie(string title, int yearReleased) {
    
 Classic Movies::getClassicMovie(string majorActorReleaseDate){
 
-       for (int i=0;i<MAX;i++){
+       for (int i=0;i<classicVector.size();i++){
            //needs to be refined input string needs to be parsed
            if (classicVector[i].getActorFirstName()==majorActorReleaseDate){
                return classicVector[i];
@@ -41,7 +41,7 @@ Classic Movies::getClassicMovie(string majorActorReleaseDate){
 
 Drama Movies::getDramaMovie(string title, string director){
 
-        for (int i=0;i<MAX;i++){
+        for (int i=0;i<dramaVector.size();i++){
            if (dramaVector[i].getTitle()==title && dramaVector[i].getDirector()==director){
                return dramaVector[i];
            }
@@ -55,8 +55,8 @@ bool Movies::addMovie(string data) {
 
         stringstream stream(data);
         string movietype;
-
         stream >> movietype;
+    movietype = movietype.substr(0, movietype.find(','));
 
         if (movietype=="F"){
 
@@ -65,6 +65,7 @@ bool Movies::addMovie(string data) {
             while(stream.good()){
                 string substring;
                 getline(stream, substring, ',');
+                substring = substring.substr(1);
                 result.push_back(substring);
             }
             
@@ -137,22 +138,22 @@ bool Movies::addMovie(string data) {
         string comedyString;
 
         for (int i=0;i<comedyVector.size();i++){
-            comedyString+comedyVector[i].getTitle()+comedyVector[i].getDirector()+to_string(comedyVector[i].getYearReleased());
+            comedyString += comedyVector[i].getTitle() + comedyVector[i].getDirector() + " " + to_string(comedyVector[i].getYearReleased() ) + "\n";
             
         }
 
          for (int i=0;i<dramaVector.size();i++){
-            dramaString+dramaVector[i].getTitle()+dramaVector[i].getDirector()+to_string(comedyVector[i].getYearReleased());
+            dramaString += dramaVector[i].getTitle()+dramaVector[i].getDirector() + " " + to_string(comedyVector[i].getYearReleased()) + "\n";
             
         }
 
-        for (int i=0;i<classicString.size();i++){
-            classicString+classicVector[i].getTitle()+classicVector[i].getDirector()+classicVector[i].getActorFirstName()+classicVector[i].getActorLastName()+to_string(classicVector[i].getReleaseDateYear());
+        for (int i=0;i<classicVector.size();i++){
+            classicString += classicVector[i].getTitle() + classicVector[i].getDirector() + " " + classicVector[i].getActorFirstName() + " " + classicVector[i].getActorLastName() + " " + to_string(classicVector[i].getReleaseDateYear()) + "\n";
         
         }
        
 
-       return comedyString + "/n" + dramaString + "\n" + classicString ; 
+       return "Comedy Movies:\n" + comedyString + "\n" + "Drama Movies:\n" + dramaString + "\n" + "Classic Movies:\n" + classicString + "\n";
     }
 
 

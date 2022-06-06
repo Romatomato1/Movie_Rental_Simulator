@@ -14,7 +14,7 @@
   //@return No return value
   //----------------------------------------------------------------------------------------------------
   Drama::Drama(int stock,string director,string title,int releaseYear) : Genre(stock,director,title){
-      yearReleased=releaseYear;
+    setYearReleased(releaseYear);
   }
   
   //------------------------------------getYearReleased-------------------------------------------------

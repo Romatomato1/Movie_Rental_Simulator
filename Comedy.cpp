@@ -8,7 +8,7 @@
 using namespace std;
 
 Comedy::Comedy(int stock, string director, string title, int releaseYear) :Genre(stock,director,title) {
-    releaseYear=releaseYear;
+    setYearReleased(releaseYear);
 }
 
 int Comedy::getYearReleased(){
@@ -27,8 +27,8 @@ string Comedy::display(){
        return retTitle + retStock + retDirector + retYear;
        }
 
-void setYearReleased(int releaseYear){
-    releaseYear=releaseYear; 
+void Comedy::setYearReleased(int releaseYear){
+    yearReleased=releaseYear;
 
 
 }

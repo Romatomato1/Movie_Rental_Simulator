@@ -5,11 +5,11 @@
 #include "Genre.h"
 
 
-Genre::Genre(int stock,string director, string releaseYear){
+Genre::Genre(int stock,string director, string title){
     char movieType;
-    stock=stock;
-    director=director;
-    title=title;
+    setStock(stock);
+    setDirector(director);
+    setTitle(title);
 }
 
 int Genre::getStock(){
@@ -35,7 +35,7 @@ char Genre::getMovieType(){
   //@return No return value
   //----------------------------------------------------------------------------------------------------
   void Genre::setStock(int stock){
-      stock=stock;
+      this->stock=stock;
   }
     
   //------------------------------------setDirector---------------------------------------------------------
@@ -44,7 +44,7 @@ char Genre::getMovieType(){
   //@return No return value
   //----------------------------------------------------------------------------------------------------
   void Genre::setDirector(string director){
-      director=director;
+      this->director=director;
   }
     
   //------------------------------------setTitle---------------------------------------------------------
@@ -53,5 +53,5 @@ char Genre::getMovieType(){
   //@return No return value
   //----------------------------------------------------------------------------------------------------
   void Genre::setTitle(string title){
-    title=title;     
+    this->title=title;
 }

@@ -66,10 +66,11 @@ private:
     //Fields
     
     //Maximum size of array that is intialized through the constructor
-    static const int MAX_SIZE = 101;
+    static const int MAX_SIZE = 1000;
     
     //Array of linked lists type customer that will be the hashtable
-    array<list<Customer>,MAX_SIZE> hashTable;
+//    array<list<Customer>,MAX_SIZE> hashTable;
+    list<Customer> hashTable[MAX_SIZE];
     
     //Helper Methods
     

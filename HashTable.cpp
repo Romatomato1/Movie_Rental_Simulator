@@ -12,7 +12,7 @@
 //@return - No direct return from a constructor.
 // ---------------------------------------------------------------------------------------------------
 HashTable::HashTable() {
-    hashTable = array<list<Customer>,MAX_SIZE>();
+//    hashTable = array<list<Customer>>();
 }
 
 bool HashTable::addValue(Customer user) {
@@ -60,9 +60,8 @@ bool HashTable::removeValue(int id) {
 }
 
 Customer HashTable::getValue(int id) const {
-    for(int i = 0; i < MAX_SIZE; i++){
-        list<Customer> linkedList = hashTable[i];
-        for(const auto& currentCustomer : linkedList)
+    for(list<Customer> list: hashTable){
+        for(const auto& currentCustomer : list)
         {
             if (id == currentCustomer.getIdNumber()){
                 return currentCustomer;
