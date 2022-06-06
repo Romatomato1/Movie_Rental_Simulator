@@ -1,3 +1,4 @@
+
 // ------------------------------------------------ RentalStore.h -----------------------------------------------------
 // Krishna Langille, Jacob Tea, Roman Gofman CSS 343 Section B 
 // 5/20/2022
@@ -13,9 +14,12 @@
 #ifndef ASSIGNMENT_4_RENTALSTORE_H
 #define ASSIGNMENT_4_RENTALSTORE_H
 #include "HashTable.h"
+#include "Customer.h"
 #include "Movies.h"
 #include <queue>
 #include <string>
+#include <fstream>
+#include <iostream>
 
 using namespace std;
 class RentalStore {
@@ -30,7 +34,7 @@ public:
     //strict order. 
     //@return - No direct return from a constructor. 
     // ---------------------------------------------------------------------------------------------------
-    RentalStore();
+    RentalStore(ifstream &customer, ifstream &transaction, ifstream &movie);
     
     //------------------------------------processTransactions---------------------------------------------
     //This is a method that will be called in our main to process the transactions that are stored within 
@@ -48,17 +52,17 @@ public:
     //@param - N/A.
     //@return - void.
     //----------------------------------------------------------------------------------------------------
-    void processTransactions()const;
+    void display() const;
     
 private:
     //Fields
     
     //Constainer for customer information
     HashTable customers;
-    
+
     //Container for transactions
     queue<string> transaction;
-    
+
     //Container for movie information as well as genre specifications
     Movies catelog;
     
@@ -71,7 +75,7 @@ private:
     //@param - string file name.
     //@return - void.
     //-----------------------------------------------------------------------------------------------------
-    void readCustomer(string customerFile);
+    void readCustomer(ifstream &customerFile);
     
     //------------------------------------readMovie-----------------------------------------------------
     //This helper method will parse through the movie file to find what genre it is and then add that 
@@ -80,7 +84,7 @@ private:
     //@param - string file name.
     //@return - void.
     //-----------------------------------------------------------------------------------------------------
-    void readMovie(string movieFile);
+    void readMovie(ifstream &movieFile);
     
     //------------------------------------readTransactions-----------------------------------------------------
     //This helper method will parse through the commands file to issue transactions that will be added to a 
@@ -89,9 +93,51 @@ private:
     //@param - string file name.
     //@return - void.
     //-----------------------------------------------------------------------------------------------------
-    void readTransaction(string transactionFile);
-    
-    
+    void readTransaction(ifstream &transactionFile);
+
+    //------------------------------------inventoryHelper-----------------------------------------------------
+    //This helper method will be called when an 'I' command is called in the transaction queue and processes this command.
+    //The inventory command will print all the available movies and their respective stock at our rental store.
+    //The order will be comedy, drama, and then classic movies.
+    //@param - string parsed from file.
+    //@return - void.
+    //-----------------------------------------------------------------------------------------------------
+    void inventoryHelper(string inventoryString);
+
+    //------------------------------------historyHelper-----------------------------------------------------
+    //This helper method will be called when an 'H' command is called in the transaction queue and processes this command.
+    //The history command will print the history of the current transactions done by a customer in latest to earliest order.
+    //@param - string parsed from file.
+    //@return - void.
+    //-----------------------------------------------------------------------------------------------------
+    void historyHelper(string historyString);
+
+    //------------------------------------borrowHelper-----------------------------------------------------
+    //This helper method will be called when an "B" command is called in the transaction queue and processes this command.
+    //The borrow command will reduce the stock of the movie borrowed by one and put the transaction on the
+    //associated customer account. It won't happen if the stock is 0 or if the movie or customer doesn't exist.
+    //@param - string parsed from file.
+    //@return - void.
+    //-----------------------------------------------------------------------------------------------------
+    void borrowHelper(string borrowString);
+
+    //------------------------------------returnHelper-----------------------------------------------------
+    //This helper method will be called when an "R" command is called in the transaction queue and processes this command.
+    //The return command will increase the stock of the movie returned by one and put the transaction on the
+    //associated customer account. It won't happen if the movie or customer doesn't exist or if the movie was never borrowed first.
+    //@param - string parsed from file.
+    //@return - void.
+    //-----------------------------------------------------------------------------------------------------
+    void returnHelper(string returnString);
+
+    //------------------------------------badCommandHelper-----------------------------------------------------
+    //This helper method will be called when any command besides the implemented ones are called. This will
+    //print out an error message for invalid action code.
+    //@param - string parsed from file.
+    //@return - void.
+    //-----------------------------------------------------------------------------------------------------
+    void badCommandHelper(string badString);
+
 };
 
 
