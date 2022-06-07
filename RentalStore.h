@@ -2,7 +2,7 @@
 // ------------------------------------------------ RentalStore.h -----------------------------------------------------
 // Krishna Langille, Jacob Tea, Roman Gofman CSS 343 Section B 
 // 5/20/2022
-// 5/24/2022
+// 6/7/2022
 // --------------------------------------------------------------------------------------------------------------------
 // This is the class that will represent our movie rental store. As such, it will include the catalog of movies through
 // a Movie object, a HashTable of Customer objects to store who has an account at the rental store, and a queue of strings
@@ -25,37 +25,31 @@ using namespace std;
 class RentalStore {
 public:
     //------------------------------------RentalStore-----------------------------------------------------
-    //The constructor will call a readfile helper method for each file that is given in a strict order of 
-    //customer file, transaction file, and movie file. This will also initialize the variables for the 
-    //Movie object, HashTable of Customers, and the queue of strings for transactions. We will call to read
-    //customers first to fill our customer base, then call to read movies to fill the movie catalog, and 
-    //finally call to read commands to make transactions with the data that is now being held. 
-    //@param - 3 string files that represent the customer file, transaction file, and movie file in that 
-    //strict order. 
-    //@return - No direct return from a constructor. 
+    //The constructor will call a readfile helper method for each file that is given in a strict order of
+    //customer file, transaction file, and movie file. This will also initialize the variables for the
+    //Movies object and HashTable of Customers. We will call to read customers first to fill our customer base
+    //then call to read movies to fill the movie catalog, and finally call to read commands to load the queue.
+    //@param - 3 string files that represent the customer file, transaction file, and movie file in that
+    //strict order.
+    //@return - No direct return from a constructor.
     // ---------------------------------------------------------------------------------------------------
     RentalStore(ifstream &customer, ifstream &transaction, ifstream &movie);
 
-    //------------------------------------~RentalStore-----------------------------------------------------
-    //The destructor will delete all of the new instances created for both the movies and hashtable
-    //@param - No parameter
-    //@return - No direct return from a constructor.
-    // ---------------------------------------------------------------------------------------------------
-    ~RentalStore();
-    
     //------------------------------------processTransactions---------------------------------------------
-    //This is a method that will be called in our main to process the transactions that are stored within 
-    //the queue. Depending on the case (what the transaction is), it will handle it accordingly. We may do
-    //all cases within this method or pass it to separate helper methods. 
+    //This is a method that will be called in our main to process the transactions that are stored within
+    //the queue. Depending on the case (what the transaction is), it will handle it accordingly. This method
+    //calls helper methods historyHelper for H case, inventoryHelper for I case, borrowHelper for B case,
+    //returnHelper for R case, and badCommandHelper for any other cases. This method will also pop everything
+    //off the transaction queue and then put it on a temporary one so that this method can be called again.
     //@param - N/A.
     //@return - void.
     //----------------------------------------------------------------------------------------------------
     void processTransactions();
-    
+
     //------------------------------------display---------------------------------------------------------
-    //This is a method that will be called in our main to display the transaction history, customer 
-    //database, and the current movies and their stock. It will achieve this by calling display methods of 
-    //the other respective classes.
+    //This is a method that will be called in our main to display the transaction history for all customers
+    //and the current movies and their stock. It will achieve this by calling the display methods of the Movies
+    //object, catelog, and of the HashTable object, customers.
     //@param - N/A.
     //@return - void.
     //----------------------------------------------------------------------------------------------------
@@ -74,30 +68,30 @@ private:
     Movies catelog;
     
     //Helper Methods
-    
+
     //------------------------------------readCustomer-----------------------------------------------------
     //This helper method will parse through the customer file to figure out the id and customer name for
-    //each customer. When we read a line, it will be split into the respective variables, initialized into 
-    //the customer class, and added to the hash table. 
-    //@param - string file name.
+    //each customer. When we read a line, it will be split into the respective variables, initialized into
+    //the customer class, and added to the hash table.
+    //@param - ifstream of customer file.
     //@return - void.
     //-----------------------------------------------------------------------------------------------------
     void readCustomer(ifstream &customerFile);
-    
+
     //------------------------------------readMovie-----------------------------------------------------
-    //This helper method will parse through the movie file to find what genre it is and then add that 
-    //movie into the movie object we have in the class. The Movie class itself will do the rest of the 
-    //work once we pass the movie string to it. 
-    //@param - string file name.
+    //This helper method will parse through the movie file to find what genre it is and then add that
+    //movie into the movie object we have in the class. The Movie class itself will do the rest of the
+    //work once we pass the movie string to it.
+    //@param - ifstream of customer file.
     //@return - void.
     //-----------------------------------------------------------------------------------------------------
     void readMovie(ifstream &movieFile);
-    
+
     //------------------------------------readTransactions-----------------------------------------------------
-    //This helper method will parse through the commands file to issue transactions that will be added to a 
-    //queue. Each line of the file will be a string variable in the queue to help make the transactions 
+    //This helper method will parse through the commands file to issue transactions that will be added to a
+    //queue. Each line of the file will be a string variable in the queue to help make the transactions
     //flow in the right order and get the history of the transactions too.
-    //@param - string file name.
+    //@param - ifstream of customer file.
     //@return - void.
     //-----------------------------------------------------------------------------------------------------
     void readTransaction(ifstream &transactionFile);
@@ -113,7 +107,8 @@ private:
 
     //------------------------------------historyHelper-----------------------------------------------------
     //This helper method will be called when an 'H' command is called in the transaction queue and processes this command.
-    //The history command will print the history of the current transactions done by a customer in latest to earliest order.
+    //The history command will print the history of the current transactions done by a customer in latest to the earliest order.
+    //Prints error messages when there is no history available or the customer doesn't exist.
     //@param - string parsed from file.
     //@return - void.
     //-----------------------------------------------------------------------------------------------------
@@ -123,6 +118,7 @@ private:
     //This helper method will be called when an "B" command is called in the transaction queue and processes this command.
     //The borrow command will reduce the stock of the movie borrowed by one and put the transaction on the
     //associated customer account. It won't happen if the stock is 0 or if the movie or customer doesn't exist.
+    //An error message will be output if the customer doesn't exist, if the movie doesn't exist, or if the stock is empty.
     //@param - string parsed from file.
     //@return - void.
     //-----------------------------------------------------------------------------------------------------
@@ -130,8 +126,9 @@ private:
 
     //------------------------------------returnHelper-----------------------------------------------------
     //This helper method will be called when an "R" command is called in the transaction queue and processes this command.
-    //The return command will increase the stock of the movie returned by one and put the transaction on the
+    //The return command will reduce the stock of the movie returned by one and put the transaction on the
     //associated customer account. It won't happen if the movie or customer doesn't exist or if the movie was never borrowed first.
+    //An error message will be output if the customer doesn't exist or if the movie doesn't exist.
     //@param - string parsed from file.
     //@return - void.
     //-----------------------------------------------------------------------------------------------------
