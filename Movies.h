@@ -1,7 +1,7 @@
 // ------------------------------------------------ Movies.h ----------------------------------------------------------
 // Krishna Langille, Jacob Tea, Roman Gofman CSS 343 Section B 
 // 5/23/2022
-// 6/7/2022
+// 5/24/2022
 // --------------------------------------------------------------------------------------------------------------------
 // This is the class that will contain all movie information in it. 
 // -------------------------------------------------------------------------------------------------------------------- 
@@ -42,7 +42,7 @@ public:
   //Retrieves a comedy movie from array based title and year released
   //@param title:Title of the Movie
   //@param yearReleased: the year that the comedy movie was released
-  //@return - Returns a comedy movie pointer. 
+  //@return - Returns a comedy movie object. 
   //----------------------------------------------------------------------------------------------------
   Comedy* getComedyMovie(string title, int yearReleased);
   
@@ -50,7 +50,7 @@ public:
   //Retrieves a drama movie from array based title and director. 
   //@param title:Title of the Movie
   //@param Director: the director of the drama movie
-  //@return - Returns a drama movie pointer. 
+  //@return - Returns a drama movie object. 
   //----------------------------------------------------------------------------------------------------
   Drama* getDramaMovie(string title, string director);
   
@@ -58,7 +58,7 @@ public:
   //Retrieves a movie based on a major actor and releases data as one string as the formatting is easier
   //that way
   //@param majorActorReleaseDate: The major actor in the movie and the release data in the same string 
-  //@return - Returns a drama movie pointer 
+  //@return - Returns a drama movie object
   //----------------------------------------------------------------------------------------------------
   Classic* getClassicMovie(string majorActorReleaseDate);
   
@@ -76,18 +76,11 @@ public:
   //@return A formatted string containing all the movies in inventory in precedent order
   //----------------------------------------------------------------------------------------------------
   string displayMovies() const;
-  
-  //------------------------------------isInStock-------------------------------------------------------
-  //Returns a bool based on if the specific movie is in stock. 
-  //@param Genre object to be compared
-  //@return Returns true if the movie is in stock, returns false if out of stock 
-  //----------------------------------------------------------------------------------------------------
-  bool isInStock(Genre movie);
 
     //Constant size
    static int const MAX = 101;
 private:
-  //three vectors that hold the movies 
+
   vector<Comedy*> comedyVector;
   vector<Drama*> dramaVector;
   vector<Classic*> classicVector;
