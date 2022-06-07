@@ -57,6 +57,10 @@ public:
   //@return returns a string that represents the title of a movie. 
   //----------------------------------------------------------------------------------------------------
   string getTitle();
+
+  void borrowMovie();
+
+  void returnMovie();
 private:
   //Class Fields
   

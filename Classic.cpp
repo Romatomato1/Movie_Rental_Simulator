@@ -15,22 +15,27 @@
   //@return No return value
   //----------------------------------------------------------------------------------------------------
   Classic::Classic(int stock,string director,string title, string majorActorReleaseDate) : Genre(stock,director,title){
-      vector<string> result;
-      stringstream ss(majorActorReleaseDate);
-      string temp;
+    if (!majorActorReleaseDate.empty()) {
+        vector<string> result;
+        stringstream ss(majorActorReleaseDate);
+        string temp;
 
-      while (ss>>temp)
-      {
+        while (ss >> temp) {
 
-          result.push_back(temp);
+            result.push_back(temp);
 
-      }
+        }
 
-      actorFirstName = result[0];
-      actorLastName = result[1];
-      releaseDateMonth = stoi(result[2]);
-      releaseDateYear = stoi(result[3]);
-
+        actorFirstName = result[0];
+        actorLastName = result[1];
+        releaseDateMonth = stoi(result[2]);
+        releaseDateYear = stoi(result[3]);
+    }else{
+        setActorFirstName("");
+        setActorLastName("");
+        setReleaseDateMonth(0);
+        setReleaseDateYear(0);
+    }
   }
   
   //------------------------------------getActorFirstName-----------------------------------------------
@@ -76,12 +81,22 @@
   //@return A formatted string containing all the movies in inventory in precedent order
   //----------------------------------------------------------------------------------------------------
   string Classic::display(){
-      
-       string retTitle = getTitle();
-       string retStock = to_string(getStock());
-       string retDirector= getDirector();
-       string retMonth = to_string(getReleaseDateMonth());
-       string retYear = to_string(getReleaseDateYear());
-
-       return retTitle + retStock + retDirector + retMonth + retYear;
+       return getTitle() + " " + getDirector() + " " + to_string(getReleaseDateMonth()) + " " +
+            to_string(getReleaseDateYear()) +" "+ getActorFirstName() +" " + getActorLastName()+ " " + to_string(getStock());
   }
+
+void Classic::setActorFirstName(string actorFirstName) {
+    this->actorFirstName = actorFirstName;
+}
+
+void Classic::setActorLastName(string actorLastName) {
+    this->actorLastName = actorLastName;
+}
+
+void Classic::setReleaseDateMonth(int releaseDateMonth) {
+    this->releaseDateMonth = releaseDateMonth;
+}
+
+void Classic::setReleaseDateYear(int releaseDateMonth) {
+    this->releaseDateYear = releaseDateMonth;
+}

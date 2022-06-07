@@ -32,13 +32,7 @@
   //@return A formatted string containing all the movies in inventory in precedent order
   //----------------------------------------------------------------------------------------------------
   string Drama::display(){
-       string retTitle = getTitle();
-       string retStock = to_string(getStock());
-       string retDirector= getDirector();
-       string retYear = to_string(getYearReleased());
-
-       return retTitle + retStock + retDirector + retYear;
-
+      return getTitle() + " " + getDirector() +" "+ to_string(getYearReleased()) + " " + to_string(getStock());
   }
 
   

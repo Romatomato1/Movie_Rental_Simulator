@@ -55,3 +55,11 @@ char Genre::getMovieType(){
   void Genre::setTitle(string title){
     this->title=title;
 }
+
+void Genre::borrowMovie() {
+    stock--;
+}
+
+void Genre::returnMovie() {
+    stock++;
+}

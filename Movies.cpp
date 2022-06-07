@@ -28,10 +28,16 @@ Comedy Movies::getComedyMovie(string title, int yearReleased) {
 
    
 Classic Movies::getClassicMovie(string majorActorReleaseDate){
-
+        vector<string> result;
+        stringstream ss(majorActorReleaseDate);
+        string temp;
+        while (ss >> temp) {
+            result.push_back(temp);
+        }
        for (int i=0;i<classicVector.size();i++){
            //needs to be refined input string needs to be parsed
-           if (classicVector[i].getActorFirstName()==majorActorReleaseDate){
+           if (classicVector[i].getActorFirstName()==result[0]&& classicVector[i].getActorLastName() == result[1]
+                &&classicVector[i].getReleaseDateMonth() ==stoi(result[2])&&classicVector[i].getReleaseDateYear() ==stoi(result[3])){
                return classicVector[i];
            }
        }
@@ -138,17 +144,17 @@ bool Movies::addMovie(string data) {
         string comedyString;
 
         for (int i=0;i<comedyVector.size();i++){
-            comedyString += comedyVector[i].getTitle() + comedyVector[i].getDirector() + " " + to_string(comedyVector[i].getYearReleased() ) + "\n";
+            comedyString += comedyVector[i].display() + "\n";
             
         }
 
          for (int i=0;i<dramaVector.size();i++){
-            dramaString += dramaVector[i].getTitle()+dramaVector[i].getDirector() + " " + to_string(comedyVector[i].getYearReleased()) + "\n";
+             dramaString += dramaVector[i].display() + "\n";
             
         }
 
         for (int i=0;i<classicVector.size();i++){
-            classicString += classicVector[i].getTitle() + classicVector[i].getDirector() + " " + classicVector[i].getActorFirstName() + " " + classicVector[i].getActorLastName() + " " + to_string(classicVector[i].getReleaseDateYear()) + "\n";
+            classicString += classicVector[i].display() + "\n";
         
         }
        

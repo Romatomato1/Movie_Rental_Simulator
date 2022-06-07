@@ -5,6 +5,7 @@ Customer::Customer(string fName, string lName, int ID) {
     setFirstName(fName);
     setLastName(lName);
     setIdNumber(ID);
+    transactions = vector<string>();
 }
 
 bool Customer::operator==(const Customer &user) const {
@@ -33,8 +34,8 @@ bool Customer::operator==(const Customer &user) const {
         void Customer::setIdNumber(int id) {
             idNumber = id;
         }
-void Customer::addTransaction(char action, string title) {
-    string formattedTransaction = "";
+void Customer::addTransaction(char action, const string& title) {
+    string formattedTransaction;
     if(action == 'B'){
         formattedTransaction = "Borrowed " + title + ".";
     }else{
@@ -44,8 +45,8 @@ void Customer::addTransaction(char action, string title) {
 }
 
 string Customer::display() {
-    string result = "";
-    for(auto transaction:transactions) {
+    string result;
+    for(const auto& transaction:transactions) {
         result += transaction + "\n";
     }
     return result;

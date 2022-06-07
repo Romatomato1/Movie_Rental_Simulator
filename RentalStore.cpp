@@ -123,8 +123,8 @@ void RentalStore::borrowHelper(string borrowString) {
                 cout << "The customer with id " << id << " is trying to borrow a media type we don't carry or are out of stock of" << endl;
             }
             else {
-                string movieString = "B " + movie.getTitle();
-                currentCustomer.addTransaction(movieString);
+                currentCustomer.addTransaction('B',movie.getTitle());
+                movie.borrowMovie();
             }
             break;
         }
@@ -134,21 +134,21 @@ void RentalStore::borrowHelper(string borrowString) {
             string title = borrowString.substr(0, borrowString.find(','));
             Drama movie = catelog.getDramaMovie(title, director);
             if (movie.getStock() <= 0) {
-                cout << "The customer with id " << id << " is trying to borrow a media type we don't carry or are out of stock of" << endl;
+                cout << "The customer with id " << id << " is trying to borrow a drama movie we don't carry or are out of stock of" << endl;
             }
             else {
-                string movieString = "B " + movie.getTitle();
-                currentCustomer.addTransaction(movieString);
+                currentCustomer.addTransaction('B',movie.getTitle());
+                movie.borrowMovie();
             }
             break;
         }
         case 'C': {
             Classic movie = catelog.getClassicMovie(borrowString);
             if (movie.getStock() <= 0) {
-                cout << "The customer with id " << id << " is trying to borrow a media type we don't carry or are out of stock of" << endl;
+                cout << "The customer with id " << id << " is trying to borrow a classic movie we don't carry or are out of stock of" << endl;
             } else {
-                string movieString = "B " + movie.getTitle();
-                currentCustomer.addTransaction(movieString);
+                currentCustomer.addTransaction('B',movie.getTitle());
+                movie.borrowMovie();
             }
             break;
         }
@@ -181,11 +181,11 @@ void RentalStore::returnHelper(string returnString) {
             string year = returnString;
             Comedy movie = catelog.getComedyMovie(title, stoi(year));
             if (movie.getTitle().empty()) {
-                cout << "The customer with id " << id << " is trying to borrow a media type we don't carry or are out of stock of" << endl;
+                cout << "The customer with id " << id << " is trying to return a media type we don't carry" << endl;
             }
             else {
-                string movieString = "R " + movie.getTitle();
-                currentCustomer.addTransaction(movieString);
+                currentCustomer.addTransaction('R',movie.getTitle());
+                movie.returnMovie();
             }
             break;
         }
@@ -195,21 +195,21 @@ void RentalStore::returnHelper(string returnString) {
             string title = returnString.substr(0, returnString.find(','));
             Drama movie = catelog.getDramaMovie(title, director);
             if (movie.getTitle().empty()) {
-                cout << "The customer with id " << id << " is trying to borrow a media type we don't carry or are out of stock of" << endl;
+                cout << "The customer with id " << id << " is trying to return a media type we don't carry" << endl;
             }
             else {
-                string movieString = "R " + movie.getTitle();
-                currentCustomer.addTransaction(movieString);
+                currentCustomer.addTransaction('R',movie.getTitle());
+                movie.returnMovie();
             }
             break;
         }
         case 'C': {
             Classic movie = catelog.getClassicMovie(returnString);
             if (movie.getTitle().empty()) {
-                cout << "The customer with id " << id << " is trying to borrow a media type we don't carry or are out of stock of" << endl;
+                cout << "The customer with id " << id << " is trying to return a media type we don't carry" << endl;
             } else {
-                string movieString = "R " + movie.getTitle();
-                currentCustomer.addTransaction(movieString);
+                currentCustomer.addTransaction('R',movie.getTitle());
+                movie.returnMovie();
             }
             break;
         }

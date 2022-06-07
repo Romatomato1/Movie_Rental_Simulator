@@ -12,7 +12,7 @@
 //@return - No direct return from a constructor.
 // ---------------------------------------------------------------------------------------------------
 HashTable::HashTable() {
-//    hashTable = array<list<Customer>>();
+    //    hashTable = array<list<Customer>>();
 }
 
 bool HashTable::addValue(Customer user) {
@@ -75,7 +75,7 @@ string HashTable::display() const{
     string result = "";
     for(list<Customer> list: hashTable){
         for(Customer customer: list){
-            result = customer.display();
+            result += customer.display();
         }
     }
     return result;

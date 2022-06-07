@@ -33,7 +33,7 @@ public:
   //@param N/A
   //@return int year the movie was released
   //----------------------------------------------------------------------------------------------------
-  int getYearReleased();
+  int getYearReleased() const;
   
   //------------------------------------display---------------------------------------------------------
   //Displays all fields in for this movie

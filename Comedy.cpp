@@ -11,21 +11,14 @@ Comedy::Comedy(int stock, string director, string title, int releaseYear) :Genre
     setYearReleased(releaseYear);
 }
 
-int Comedy::getYearReleased(){
+int Comedy::getYearReleased() const{
     return yearReleased;
 
 }
 
 string Comedy::display(){
-       
-
-       string retTitle = getTitle();
-       string retStock = to_string(getStock());
-       string retDirector= getDirector();
-       string retYear = to_string(getYearReleased());
-
-       return retTitle + retStock + retDirector + retYear;
-       }
+       return getTitle() + " " + getDirector() +" "+ to_string(getYearReleased()) + " " + to_string(getStock());
+}
 
 void Comedy::setYearReleased(int releaseYear){
     yearReleased=releaseYear;

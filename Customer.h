@@ -18,7 +18,7 @@ using namespace std;
 
 class Customer {
 public:
-    static int const MAX = 101;
+    static int const MAX = 1000;
     //------------------------------------Customer-----------------------------------------------------
     //This is the class that will represent our customer objects. As such it will include their first and last names and their ID number.
     //A customer object just stores the information about the customer and contains basic methods.
@@ -60,7 +60,7 @@ public:
     //@param - The string representing the transaction
     //@return - N/A
     // -----------------------------------------------------------------------------------------------------
-    void addTransaction(char action, string title);
+    void addTransaction(char action, const string& title);
 
     //-----------------------------------Display------------------------------------------------------------
     //This will display all the customer data likely formatted as firstname, lastname, and id number.
@@ -99,8 +99,6 @@ private:
     string firstName;
     string lastName;
     int idNumber;
-    array<string,MAX> borrowed;
-    array<string,MAX> returned;
     vector<string> transactions;
 };
 

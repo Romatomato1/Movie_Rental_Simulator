@@ -60,7 +60,6 @@ public:
   //@return A formatted string containing all the movies in inventory in precedent order
   //----------------------------------------------------------------------------------------------------
   string display();
-  
 private:
   //Class Fields
   
