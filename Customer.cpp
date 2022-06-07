@@ -114,8 +114,8 @@ void Customer::addTransaction(char action, const string& title) {
 // ---------------------------------------------------------------------------------------------------------------------
 string Customer::display() {
     string result;
-    for(const auto& transaction:transactions) {
-        result += transaction + "\n";
+    for(int i = transactions.size() - 1; i >= 0; i--) {
+        result += transactions[i] + "\n";
     }
     return result;
 }
