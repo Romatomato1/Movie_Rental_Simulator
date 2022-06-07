@@ -120,4 +120,17 @@ string Customer::display() {
     return result;
 }
 
-
+//-----------------------------------isBorrowed-------------------------------------------------------------------------
+//This will display all the customer data likely formatted as firstname, lastname, and id number.
+//@param - name of movie to check if borrowed
+//@return - bool for if a movie has been borrowed.
+// ---------------------------------------------------------------------------------------------------------------------
+bool Customer::isBorrowed(string name) {
+    string compare = "Borrowed " + name + ".";
+    for(auto transaction: transactions){
+        if(compare == transaction){
+            return true;
+        }
+    }
+    return false;
+}
