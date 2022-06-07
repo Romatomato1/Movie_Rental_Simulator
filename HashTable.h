@@ -1,15 +1,15 @@
-// ------------------------------------------------ HashTable.h -------------------------------------------------------
+// ------------------------------------------------ HashTable.h --------------------------------------------------------
 // Krishna Langille, Jacob Tea, Roman Gofman CSS 343 Section B 
 // 5/20/2022
-// 5/24/2022
-// --------------------------------------------------------------------------------------------------------------------
+// 6/7/2022
+// ---------------------------------------------------------------------------------------------------------------------
 // This class is going to be a hash table that will store customer objects. It will have a hash function that will take
-// the customer's id and does the mod by the MAXSIZE to find the hash value and where it will be on the hash table.
-// This iteration of the hash table will be using the open hash method where duplicate hash values will be handled through
+// the customer's id and does the mod by the MAXSIZE to find the hash value and where it will be on the hash table.This
+// iteration of the hash table will be using the open hash method where duplicate hash values will be handled through.
 // a linked list.
-// -------------------------------------------------------------------------------------------------------------------- 
+// ---------------------------------------------------------------------------------------------------------------------
 // Assumes that the customers being stored have the correct syntax regarding name size and id size.
-// --------------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------
 
 #ifndef ASSIGNMENT_4_HASHTABLE_H
 #define ASSIGNMENT_4_HASHTABLE_H
@@ -51,15 +51,12 @@ class HashTable {
     //@return - Return the Customer object that is associated with id. 
     //----------------------------------------------------------------------------------------------------
     Customer* getValue(int id) const;
-  
-    //------------------------------------removeValue---------------------------------------------------------
-    //This method will remove the customer object that is associated with the integer parameter. This method will
-    // be sure to make the index where removal happened to be a special spot for further indication. 
-    //@param - Integer representing customer id.
-    //@return - Return true if the removal succeeds.
-    //--------------------------------------------------------------------------------------------------------
-    bool removeValue(int id);
 
+    //-----------------------------------display------------------------------------------------------------------------
+    //This will display all the customers' data likely formatted as firstname, lastname, and id number.
+    //@param - N/A.
+    //@return - String
+    // -----------------------------------------------------------------------------------------------------------------
     string display() const;
  
 private:
@@ -69,9 +66,11 @@ private:
     static const int MAX_SIZE = 1000;
     
     //Array of linked lists type customer that will be the hashtable
-//    array<list<Customer>,MAX_SIZE> hashTable;
     list<Customer*> hashTable[MAX_SIZE];
-    
+
+    //Empty customer object
+    Customer* nullCustomer;
+
     //Helper Methods
     
     //------------------------------------Hashify-----------------------------------------------------
