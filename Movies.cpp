@@ -34,7 +34,7 @@ Comedy* Movies::getComedyMovie(string title, int yearReleased) {
            }
        }
 
-       return new Comedy( 0,"" ,"", 0);
+       return nullptr;
    }
 
    
@@ -53,7 +53,7 @@ Classic* Movies::getClassicMovie(string majorActorReleaseDate){
            }
        }
 
-       return new Classic( 0,"" ,"", "");
+       return nullptr;
    }
 
 Drama* Movies::getDramaMovie(string title, string director){
@@ -64,7 +64,7 @@ Drama* Movies::getDramaMovie(string title, string director){
            }
         }
 
-       return new Drama(0,"" ,"", 0);
+       return nullptr;
     }
 
 
