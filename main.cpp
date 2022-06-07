@@ -6,5 +6,6 @@ int main() {
     ifstream file3("data4movies.txt");
     RentalStore store(file2, file1, file3);
     store.processTransactions();
+    store.display();
     return 0;
 }

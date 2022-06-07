@@ -15,9 +15,9 @@ HashTable::HashTable() {
     //    hashTable = array<list<Customer>>();
 }
 
-bool HashTable::addValue(Customer user) {
-    if (!contains(user.getIdNumber())) {
-        int hashCode = hashify(user.getIdNumber());
+bool HashTable::addValue(Customer* user) {
+    if (!contains(user->getIdNumber())) {
+        int hashCode = hashify(user->getIdNumber());
         hashTable[hashCode].push_back(user);
         return true;
     }
@@ -30,10 +30,10 @@ int HashTable::hashify(int id) const {
 
 bool HashTable::contains(int id) const{
     for(int i = 0; i < MAX_SIZE; i++){
-        list<Customer> linkedList = hashTable[i];
+        list<Customer*> linkedList = hashTable[i];
         for(const auto& currentCustomer : linkedList)
         {
-            if (id == currentCustomer.getIdNumber()){
+            if (id == currentCustomer->getIdNumber()){
                 return true;
             }
         }
@@ -42,15 +42,19 @@ bool HashTable::contains(int id) const{
 }
 
 HashTable::~HashTable() {
-
+    for(const auto& list: hashTable){
+        for(auto customer: list){
+            delete customer;
+        }
+    }
 }
 
 bool HashTable::removeValue(int id) {
     for(int i = 0; i < MAX_SIZE; i++){
-        list<Customer> linkedList = hashTable[i];
+        list<Customer*> linkedList = hashTable[i];
         for(const auto& currentCustomer : linkedList)
         {
-            if (id == currentCustomer.getIdNumber()){
+            if (id == currentCustomer->getIdNumber()){
                 linkedList.remove(currentCustomer);
                 return true;
             }
@@ -59,23 +63,29 @@ bool HashTable::removeValue(int id) {
     return false;
 }
 
-Customer HashTable::getValue(int id) const {
-    for(list<Customer> list: hashTable){
+Customer* HashTable::getValue(int id) const {
+    for(const auto& list: hashTable){
         for(const auto& currentCustomer : list)
         {
-            if (id == currentCustomer.getIdNumber()){
+            if (id == currentCustomer->getIdNumber()){
                 return currentCustomer;
             }
         }
     }
-    return Customer("","",0);
+    return new Customer("","",0);
 }
 
 string HashTable::display() const{
-    string result = "";
-    for(list<Customer> list: hashTable){
-        for(Customer customer: list){
-            result += customer.display();
+    string result;
+    for(const auto& list: hashTable){
+        for(auto customer: list){
+            result += "\nRental history for " + customer->getFirstName() + " " + customer->getLastName() + ":\n";
+            if(customer->display().empty()){
+                result += "No history\n";
+            }
+            else{
+                result += customer->display();
+            }
         }
     }
     return result;

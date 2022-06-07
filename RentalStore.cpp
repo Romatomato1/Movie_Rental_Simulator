@@ -13,6 +13,10 @@ RentalStore::RentalStore(ifstream &customer, ifstream &transaction, ifstream &mo
     readMovie(movie);
 }
 
+RentalStore::~RentalStore() {
+
+}
+
 void RentalStore::processTransactions() {
     queue<string> tempQueue;
     while(!transaction.empty()){
@@ -41,7 +45,8 @@ void RentalStore::processTransactions() {
 }
 
 void RentalStore::display() const {
-    customers.display();
+    cout << catelog.displayMovies();
+    cout << customers.display();
 }
 
 void RentalStore::readCustomer(ifstream &customerFile) {
@@ -54,7 +59,7 @@ void RentalStore::readCustomer(ifstream &customerFile) {
             string lName = customerLine.substr(0, customerLine.find(' '));
             customerLine = customerLine.substr(customerLine.find(' ') + 1);
             string fName = customerLine.substr(0, customerLine.find(' '));
-            customers.addValue(Customer(fName, lName, id));
+            customers.addValue(new Customer(fName, lName, id));
         }
         getline(customerFile, customerLine);
     }
@@ -88,10 +93,16 @@ void RentalStore::inventoryHelper(string inventoryString) {
 
 void RentalStore::historyHelper(string historyString) {
     string id = historyString.substr(historyString.find(' ') + 1, 4);
-    Customer currentCustomer = customers.getValue(stoi(id));
-    if(currentCustomer.getIdNumber() != 0){
-        cout << "Rental history for " << currentCustomer.getFirstName() << " " << currentCustomer.getLastName() << ":" << endl;
-        cout << customers.getValue(stoi(id)).display();
+    Customer *currentCustomer = customers.getValue(stoi(id));
+    if(currentCustomer->getIdNumber() != 0){
+        cout << "Rental history for " << currentCustomer->getFirstName() << " " << currentCustomer->getLastName() << ":" << endl;
+        string customerHistory = customers.getValue(stoi(id))->display();
+        if(customerHistory.empty()){
+            cout << "No history" << endl;
+        }
+        else{
+            cout << customerHistory << endl;
+        }
     }
     else{
         cout << "Cannot get the history of the customer with id " << id << " because they do not exist in our system" << endl;
@@ -100,8 +111,8 @@ void RentalStore::historyHelper(string historyString) {
 
 void RentalStore::borrowHelper(string borrowString) {
     string id = borrowString.substr(borrowString.find(' ') + 1, 4);
-    Customer currentCustomer = customers.getValue(stoi(id));
-    if(currentCustomer.getIdNumber() == 0){
+    Customer *currentCustomer = customers.getValue(stoi(id));
+    if(currentCustomer->getIdNumber() == 0){
         cout << "The customer with id " << id << " doesn't exist, so the borrow can't happen" << endl;
         return;
     }
@@ -118,37 +129,37 @@ void RentalStore::borrowHelper(string borrowString) {
             string title = borrowString.substr(0, borrowString.find(','));
             borrowString = borrowString.substr(borrowString.find(',') + 1);
             string year = borrowString.substr(1);
-            Comedy movie = catelog.getComedyMovie(title, stoi(year));
-            if (movie.getStock() <= 0) {
+            Comedy *movie = catelog.getComedyMovie(title, stoi(year));
+            if (movie->getStock() <= 0) {
                 cout << "The customer with id " << id << " is trying to borrow a media type we don't carry or are out of stock of" << endl;
             }
             else {
-                currentCustomer.addTransaction('B',movie.getTitle());
-                movie.borrowMovie();
+                currentCustomer->addTransaction('B',movie->getTitle());
+                movie->borrowMovie();
             }
             break;
         }
         case 'D': {
             string director = borrowString.substr(0, borrowString.find(','));
-            borrowString = borrowString.substr(borrowString.find(',') + 1);
+            borrowString = borrowString.substr(borrowString.find(',') + 2);
             string title = borrowString.substr(0, borrowString.find(','));
-            Drama movie = catelog.getDramaMovie(title, director);
-            if (movie.getStock() <= 0) {
+            Drama *movie = catelog.getDramaMovie(title, director);
+            if (movie->getStock() <= 0) {
                 cout << "The customer with id " << id << " is trying to borrow a drama movie we don't carry or are out of stock of" << endl;
             }
             else {
-                currentCustomer.addTransaction('B',movie.getTitle());
-                movie.borrowMovie();
+                currentCustomer->addTransaction('B',movie->getTitle());
+                movie->borrowMovie();
             }
             break;
         }
         case 'C': {
-            Classic movie = catelog.getClassicMovie(borrowString);
-            if (movie.getStock() <= 0) {
+            Classic *movie = catelog.getClassicMovie(borrowString);
+            if (movie->getStock() <= 0) {
                 cout << "The customer with id " << id << " is trying to borrow a classic movie we don't carry or are out of stock of" << endl;
             } else {
-                currentCustomer.addTransaction('B',movie.getTitle());
-                movie.borrowMovie();
+                currentCustomer->addTransaction('B',movie->getTitle());
+                movie->borrowMovie();
             }
             break;
         }
@@ -161,8 +172,8 @@ void RentalStore::borrowHelper(string borrowString) {
 
 void RentalStore::returnHelper(string returnString) {
     string id = returnString.substr(returnString.find(' ') + 1, 4);
-    Customer currentCustomer = customers.getValue(stoi(id));
-    if(currentCustomer.getIdNumber() == 0){
+    Customer *currentCustomer = customers.getValue(stoi(id));
+    if(currentCustomer->getIdNumber() == 0){
         cout << "The customer with id " << id << " doesn't exist, so the borrow can't happen" << endl;
         return;
     }
@@ -179,13 +190,13 @@ void RentalStore::returnHelper(string returnString) {
             string title = returnString.substr(0, returnString.find(','));
             returnString = returnString.substr(returnString.find(',') + 1);
             string year = returnString;
-            Comedy movie = catelog.getComedyMovie(title, stoi(year));
-            if (movie.getTitle().empty()) {
+            Comedy *movie = catelog.getComedyMovie(title, stoi(year));
+            if (movie->getTitle().empty()) {
                 cout << "The customer with id " << id << " is trying to return a media type we don't carry" << endl;
             }
             else {
-                currentCustomer.addTransaction('R',movie.getTitle());
-                movie.returnMovie();
+                currentCustomer->addTransaction('R',movie->getTitle());
+                movie->returnMovie();
             }
             break;
         }
@@ -193,23 +204,23 @@ void RentalStore::returnHelper(string returnString) {
             string director = returnString.substr(0, returnString.find(','));
             returnString = returnString.substr(returnString.find(',') + 1);
             string title = returnString.substr(0, returnString.find(','));
-            Drama movie = catelog.getDramaMovie(title, director);
-            if (movie.getTitle().empty()) {
+            Drama *movie = catelog.getDramaMovie(title, director);
+            if (movie->getTitle().empty()) {
                 cout << "The customer with id " << id << " is trying to return a media type we don't carry" << endl;
             }
             else {
-                currentCustomer.addTransaction('R',movie.getTitle());
-                movie.returnMovie();
+                currentCustomer->addTransaction('R',movie->getTitle());
+                movie->returnMovie();
             }
             break;
         }
         case 'C': {
-            Classic movie = catelog.getClassicMovie(returnString);
-            if (movie.getTitle().empty()) {
+            Classic *movie = catelog.getClassicMovie(returnString);
+            if (movie->getTitle().empty()) {
                 cout << "The customer with id " << id << " is trying to return a media type we don't carry" << endl;
             } else {
-                currentCustomer.addTransaction('R',movie.getTitle());
-                movie.returnMovie();
+                currentCustomer->addTransaction('R',movie->getTitle());
+                movie->returnMovie();
             }
             break;
         }

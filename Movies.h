@@ -30,6 +30,13 @@ public:
   //@return - void.
   //----------------------------------------------------------------------------------------------------
   Movies();
+
+  //------------------------------------~Movie-----------------------------------------------------------
+  //The movie destructor that will delete all new instances of genres
+  //@param - N/A.
+  //@return - void.
+  //----------------------------------------------------------------------------------------------------
+  ~Movies();
   
   //------------------------------------getComedyMovie--------------------------------------------------
   //Retrieves a comedy movie from array based title and year released
@@ -37,7 +44,7 @@ public:
   //@param yearReleased: the year that the comedy movie was released
   //@return - Returns a comedy movie object. 
   //----------------------------------------------------------------------------------------------------
-  Comedy getComedyMovie(string title, int yearReleased);
+  Comedy* getComedyMovie(string title, int yearReleased);
   
   //------------------------------------getDramaMovie--------------------------------------------------
   //Retrieves a drama movie from array based title and director. 
@@ -45,7 +52,7 @@ public:
   //@param Director: the director of the drama movie
   //@return - Returns a drama movie object. 
   //----------------------------------------------------------------------------------------------------
-  Drama getDramaMovie(string title, string director);
+  Drama* getDramaMovie(string title, string director);
   
   //------------------------------------getClassicMovie-------------------------------------------------
   //Retrieves a movie based on a major actor and releases data as one string as the formatting is easier
@@ -53,7 +60,7 @@ public:
   //@param majorActorReleaseDate: The major actor in the movie and the release data in the same string 
   //@return - Returns a drama movie object
   //----------------------------------------------------------------------------------------------------
-  Classic getClassicMovie(string majorActorReleaseDate);
+  Classic* getClassicMovie(string majorActorReleaseDate);
   
   //------------------------------------addMovie--------------------------------------------------------
   //Adds a movie to the appropriate array based on what type of movie it is
@@ -68,7 +75,7 @@ public:
   //@param N/A
   //@return A formatted string containing all the movies in inventory in precedent order
   //----------------------------------------------------------------------------------------------------
-  string displayMovies();
+  string displayMovies() const;
   
   //------------------------------------isInStock-------------------------------------------------------
   //Returns a bool based on if the specific movie is in stock. 
@@ -81,9 +88,9 @@ public:
    static int const MAX = 101;
 private:
 
-  vector<Comedy> comedyVector;
-  vector<Drama> dramaVector;
-  vector<Classic> classicVector;
+  vector<Comedy*> comedyVector;
+  vector<Drama*> dramaVector;
+  vector<Classic*> classicVector;
 
 
 

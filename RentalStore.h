@@ -35,6 +35,13 @@ public:
     //@return - No direct return from a constructor. 
     // ---------------------------------------------------------------------------------------------------
     RentalStore(ifstream &customer, ifstream &transaction, ifstream &movie);
+
+    //------------------------------------~RentalStore-----------------------------------------------------
+    //The destructor will delete all of the new instances created for both the movies and hashtable
+    //@param - No parameter
+    //@return - No direct return from a constructor.
+    // ---------------------------------------------------------------------------------------------------
+    ~RentalStore();
     
     //------------------------------------processTransactions---------------------------------------------
     //This is a method that will be called in our main to process the transactions that are stored within 

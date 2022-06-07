@@ -11,23 +11,34 @@ using namespace std;
 
 
 Movies::Movies() {
-
  
 }
 
-Comedy Movies::getComedyMovie(string title, int yearReleased) {
+Movies::~Movies() {
+    for(int i = 0; i < comedyVector.size(); i++){
+        delete comedyVector[i];
+    }
+    for(int i = 0; i < dramaVector.size(); i++){
+        delete dramaVector[i];
+    }
+    for(int i = 0; i < classicVector.size(); i++){
+        delete classicVector[i];
+    }
+}
+
+Comedy* Movies::getComedyMovie(string title, int yearReleased) {
 
        for (int i=0;i<comedyVector.size();i++){
-           if (comedyVector[i].getTitle()==title && comedyVector[i].getYearReleased()==yearReleased){
+           if (comedyVector[i]->getTitle()==title && comedyVector[i]->getYearReleased()==yearReleased){
                return comedyVector[i];
            }
        }
 
-       return Comedy( 0,"" ,"", 0);
+       return new Comedy( 0,"" ,"", 0);
    }
 
    
-Classic Movies::getClassicMovie(string majorActorReleaseDate){
+Classic* Movies::getClassicMovie(string majorActorReleaseDate){
         vector<string> result;
         stringstream ss(majorActorReleaseDate);
         string temp;
@@ -36,24 +47,24 @@ Classic Movies::getClassicMovie(string majorActorReleaseDate){
         }
        for (int i=0;i<classicVector.size();i++){
            //needs to be refined input string needs to be parsed
-           if (classicVector[i].getActorFirstName()==result[0]&& classicVector[i].getActorLastName() == result[1]
-                &&classicVector[i].getReleaseDateMonth() ==stoi(result[2])&&classicVector[i].getReleaseDateYear() ==stoi(result[3])){
+           if (classicVector[i]->getActorFirstName()==result[2]&& classicVector[i]->getActorLastName() == result[3]
+                &&classicVector[i]->getReleaseDateMonth() ==stoi(result[0])&&classicVector[i]->getReleaseDateYear() ==stoi(result[1])){
                return classicVector[i];
            }
        }
 
-       return Classic( 0,"" ,"", "");
+       return new Classic( 0,"" ,"", "");
    }
 
-Drama Movies::getDramaMovie(string title, string director){
+Drama* Movies::getDramaMovie(string title, string director){
 
         for (int i=0;i<dramaVector.size();i++){
-           if (dramaVector[i].getTitle()==title && dramaVector[i].getDirector()==director){
+           if (dramaVector[i]->getTitle()==title && dramaVector[i]->getDirector()==director){
                return dramaVector[i];
            }
         }
 
-       return Drama(0,"" ,"", 0);
+       return new Drama(0,"" ,"", 0);
     }
 
 
@@ -76,7 +87,7 @@ bool Movies::addMovie(string data) {
             }
             
             
-            comedyVector.push_back(Comedy(stoi(result.at(0)),result.at(1),result.at(2),stoi(result.at(3))));
+            comedyVector.push_back(new Comedy(stoi(result.at(0)),result.at(1),result.at(2),stoi(result.at(3))));
             return true;
             
         }
@@ -96,11 +107,12 @@ bool Movies::addMovie(string data) {
             while(stream.good()){
                 string substring;
                 getline(stream, substring, ',');
+                substring = substring.substr(1);
                 result.push_back(substring);
                     }
                     
                     
-            classicVector.push_back(Classic(stoi(result.at(0)),result.at(1),result.at(2),result.at(3)));
+            classicVector.push_back(new Classic(stoi(result.at(0)),result.at(1),result.at(2),result.at(3)));
             return true;
                     
 
@@ -119,11 +131,12 @@ bool Movies::addMovie(string data) {
             while(stream.good()){
                 string substring;
                 getline(stream, substring, ',');
+                substring = substring.substr(1);
                 result.push_back(substring);
                     }
                     
                     
-            dramaVector.push_back(Drama(stoi(result.at(0)),result.at(1),result.at(2),stoi(result.at(3))));
+            dramaVector.push_back(new Drama(stoi(result.at(0)),result.at(1),result.at(2),stoi(result.at(3))));
             return true;
 
         }
@@ -138,23 +151,23 @@ bool Movies::addMovie(string data) {
     }
 
 
-  string Movies::displayMovies(){
+  string Movies::displayMovies() const {
         string classicString;
         string dramaString;
         string comedyString;
 
         for (int i=0;i<comedyVector.size();i++){
-            comedyString += comedyVector[i].display() + "\n";
+            comedyString += comedyVector[i]->display() + "\n";
             
         }
 
          for (int i=0;i<dramaVector.size();i++){
-             dramaString += dramaVector[i].display() + "\n";
+             dramaString += dramaVector[i]->display() + "\n";
             
         }
 
         for (int i=0;i<classicVector.size();i++){
-            classicString += classicVector[i].display() + "\n";
+            classicString += classicVector[i]->display() + "\n";
         
         }
        
@@ -169,12 +182,12 @@ bool Movies::addMovie(string data) {
 
             for (int i=0;i<MAX;i++){
 
-               if (comedyVector[i].getTitle()==movie.getTitle() && comedyVector[i].getDirector()==movie.getDirector() 
+               if (comedyVector[i]->getTitle()==movie.getTitle() && comedyVector[i]->getDirector()==movie.getDirector()
                //&& comedyArray[i].getReleaseYear()==movie.getReleaseYear()
 
                 ){
 
-                   if (comedyVector[i].getStock()>0){
+                   if (comedyVector[i]->getStock()>0){
                        return true; 
                    }
 
@@ -190,10 +203,10 @@ bool Movies::addMovie(string data) {
         else if (movie.getMovieType()=='D') {
             
             for (int i=0;i<MAX;i++){
-               if (dramaVector[i].getTitle()==movie.getTitle() && dramaVector[i].getDirector()==movie.getDirector()
+               if (dramaVector[i]->getTitle()==movie.getTitle() && dramaVector[i]->getDirector()==movie.getDirector()
                //&& dramaArray[i].getReleaseYear()==movie.getReleaseYear()
                ){
-                   if (dramaVector[i].getStock()>0){
+                   if (dramaVector[i]->getStock()>0){
                    return true;
                 }
             }
@@ -205,10 +218,10 @@ bool Movies::addMovie(string data) {
         else {
 
             for (int i=0;i<MAX;i++){
-               if (classicVector[i].getTitle()==movie.getTitle() && classicVector[i].getDirector()==movie.getDirector()
+               if (classicVector[i]->getTitle()==movie.getTitle() && classicVector[i]->getDirector()==movie.getDirector()
                //&& classicArray[i].getReleaseYear()==movie.getReleaseYear()
                ){
-                   if (classicVector[i].getStock()>0){
+                   if (classicVector[i]->getStock()>0){
                        return true;
                    }
                }
