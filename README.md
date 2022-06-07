@@ -17,4 +17,6 @@ Works when it runs and No memopry leaks. The program starts out from the Main cl
 Compile Demo:
 For the main, the following must be done:
 1)Create an ifstream for each of the files that are being read in.
-2)Create the RentalStore object
+2)Create the RentalStore object and pass the files in the correct order - customer file, transaction file, movie file.
+3)Call processTransactions on the RentalStore object.
+4)Call display on the RentalStore object. 
