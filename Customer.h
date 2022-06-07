@@ -74,6 +74,13 @@ public:
     //@return - Boolean if equal
     // -----------------------------------------------------------------------------------------------------------------
     bool operator== (const Customer &user)const;
+    
+    //-----------------------------------isBorrowed-------------------------------------------------------------------------
+    //This will display all the customer data likely formatted as firstname, lastname, and id number.
+    //@param - name of movie to check if borrowed
+    //@return - bool for if a movie has been borrowed.
+    // ---------------------------------------------------------------------------------------------------------------------
+    bool isBorrowed(string name);
 private:
     //-----------------------------------setFirstName-------------------------------------------------------------------
     //This is a private method that will be used to properly set the variable of first name.
