@@ -42,7 +42,7 @@ public:
   //Retrieves a comedy movie from array based title and year released
   //@param title:Title of the Movie
   //@param yearReleased: the year that the comedy movie was released
-  //@return - Returns a comedy movie object. 
+  //@return - Returns a comedy movie pointer. 
   //----------------------------------------------------------------------------------------------------
   Comedy* getComedyMovie(string title, int yearReleased);
   
@@ -50,7 +50,7 @@ public:
   //Retrieves a drama movie from array based title and director. 
   //@param title:Title of the Movie
   //@param Director: the director of the drama movie
-  //@return - Returns a drama movie object. 
+  //@return - Returns a drama movie pointer. 
   //----------------------------------------------------------------------------------------------------
   Drama* getDramaMovie(string title, string director);
   
@@ -58,7 +58,7 @@ public:
   //Retrieves a movie based on a major actor and releases data as one string as the formatting is easier
   //that way
   //@param majorActorReleaseDate: The major actor in the movie and the release data in the same string 
-  //@return - Returns a drama movie object
+  //@return - Returns a drama movie pointer 
   //----------------------------------------------------------------------------------------------------
   Classic* getClassicMovie(string majorActorReleaseDate);
   
@@ -87,7 +87,7 @@ public:
     //Constant size
    static int const MAX = 101;
 private:
-
+  //three vectors that hold the movies 
   vector<Comedy*> comedyVector;
   vector<Drama*> dramaVector;
   vector<Classic*> classicVector;
