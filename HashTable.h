@@ -1,5 +1,5 @@
-// ------------------------------------------------ HashTable.h --------------------------------------------------------
-// Krishna Langille, Jacob Tea, Roman Gofman CSS 343 Section B 
+// ------------------------------------------------ HashTable.cpp-------------------------------------------------------
+// Krishna Langille, Jacob Tea, Roman Gofman CSS 343 Section B
 // 5/20/2022
 // 6/7/2022
 // ---------------------------------------------------------------------------------------------------------------------
@@ -52,11 +52,6 @@ class HashTable {
     //----------------------------------------------------------------------------------------------------
     Customer* getValue(int id) const;
 
-    //-----------------------------------display------------------------------------------------------------------------
-    //This will display all the customers' data likely formatted as firstname, lastname, and id number.
-    //@param - N/A.
-    //@return - String
-    // -----------------------------------------------------------------------------------------------------------------
     string display() const;
  
 private:
@@ -66,11 +61,9 @@ private:
     static const int MAX_SIZE = 1000;
     
     //Array of linked lists type customer that will be the hashtable
+//    array<list<Customer>,MAX_SIZE> hashTable;
     list<Customer*> hashTable[MAX_SIZE];
-
-    //Empty customer object
-    Customer* nullCustomer;
-
+    
     //Helper Methods
     
     //------------------------------------Hashify-----------------------------------------------------
